@@ -863,12 +863,12 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if [ -e /usr/local/lib/node_modules/alfred-lingualeo/tmp/$audioFileName.mp3 ]
+				<string>if [ -e $PWD/tmp/$audioFileName.mp3 ]
 then
-afplay /usr/local/lib/node_modules/alfred-lingualeo/tmp/$audioFileName.mp3
+afplay $PWD/tmp/$audioFileName.mp3
 else
 ./node_modules/.bin/run-node src/api/dictionary.js "$1" "play"
-afplay /usr/local/lib/node_modules/alfred-lingualeo/tmp/$audioFileName.mp3
+afplay $PWD/tmp/$audioFileName.mp3
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -960,11 +960,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>35</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>786432</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>L</string>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1007,12 +1007,12 @@ fi</string>
 				<key>script</key>
 				<string>./node_modules/.bin/run-node index.js "$1"
 
-if [ -e /usr/local/lib/node_modules/alfred-lingualeo/tmp/ ]
+if [ -e $PWD/tmp/ ]
 then
-rm -r /usr/local/lib/node_modules/alfred-lingualeo/tmp/
-mkdir /usr/local/lib/node_modules/alfred-lingualeo/tmp/
+rm -r $PWD/tmp/
+mkdir $PWD/tmp/
 else
-mkdir /usr/local/lib/node_modules/alfred-lingualeo/tmp/
+mkdir $PWD/tmp/
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -1824,7 +1824,7 @@ MISSING: FALSE</string>
 		<string>password</string>
 	</array>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

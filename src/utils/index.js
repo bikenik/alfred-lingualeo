@@ -27,7 +27,7 @@ module.exports.hasOwnProperty = (obj, prop) =>
 
 module.exports.saveAudioFile = async (url, fileName) => {
 	const writeStreamExp = fs.createWriteStream(
-		`/usr/local/lib/node_modules/${alfy.meta.name}/tmp/${fileName}.mp3`
+		`${process.env.PWD}/tmp/${fileName}.mp3`
 	)
 	request
 		.get(url)
