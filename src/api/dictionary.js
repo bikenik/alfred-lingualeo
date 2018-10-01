@@ -139,7 +139,7 @@ const run = async () => {
 if (username === '' && password === '') {
 	alfy.output([{
 		title: 'Login and Password are missing',
-		subtitle: 'Pleas, fill the password and username from your LinguaLeo accaunt'
+		subtitle: 'Pleas, fill the password and username from your LinguaLeo account'
 	}])
 } else {
 	run()
