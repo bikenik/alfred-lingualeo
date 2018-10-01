@@ -40,10 +40,9 @@ $ npm install --global alfred-lingualeo
 - your_language: ru, es
 
 ### Postman collection of LinguaLeo's API:
-- [Postman Collection](https://www.getpostman.com/collections/dcab906f7a6b76d74297)
+- [Postman Collection](https://github.com/bikenik/alfred-lingualeo/blob/master/Lingua-Leo.postman_collection.json)
 
 ### ToDo
-
 - [ ] Tests
 
 ## License
