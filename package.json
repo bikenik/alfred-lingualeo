@@ -1,0 +1,57 @@
+{
+  "name": "alfred-lingualeo",
+  "version": "0.0.9",
+  "description": "lingualeo dictionary",
+  "license": "MIT",
+  "repository": "bikenik/alfred-lingualeo",
+  "author": {
+    "name": "bikenik",
+    "email": "bikenik@icloud.com",
+    "url": "http://bikenik.org"
+  },
+  "engines": {
+    "node": ">=7.6"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "postinstall": "alfy-init",
+    "preuninstall": "alfy-cleanup"
+  },
+  "files": [
+    "icon.png",
+    "icons",
+    "index.js",
+    "info.plist",
+    "src"
+  ],
+  "keywords": [
+    "alfred",
+    "workflow",
+    "alfy"
+  ],
+  "dependencies": {
+    "alfy": "^0.7.0",
+    "got": "^9.2.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "stream-to-promise": "^2.2.0"
+  },
+  "devDependencies": {
+    "alfy-test": "^0.3.0",
+    "ava": "^0.25.0",
+    "xo": "^0.23.0"
+  },
+  "xo": {
+    "space": false,
+    "semicolon": false,
+    "capitalized-comments": [
+      "error",
+      "always",
+      {
+        "block": {
+          "ignorePattern": "blockignore"
+        }
+      }
+    ]
+  }
+}
