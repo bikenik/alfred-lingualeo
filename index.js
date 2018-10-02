@@ -33,6 +33,10 @@ const run = async () => {
 	alfy.input = alfy.input.replace(/.*?\u2023[\s]/gm, '')
 	await rp(options)
 		.then(data => {
+			const setsName = data.result.map(x => ({
+				setNumber: x.id,
+				setName: x.name
+			}))
 			const items = alfy
 				.matches(alfy.input, data.result, 'name')
 				.map(x => ({
@@ -44,12 +48,12 @@ const run = async () => {
 					}
 				}))
 			alfy.output(items.length > 0 ? items : [{
-				title: `Set ${alfy.input} not found`
+				title: `add to: "${alfy.input}" set`,
+				variables: {
+					currentSet: alfy.input
+				},
+				arg: alfy.input
 			}])
-			const setsName = items.map(x => ({
-				setNumber: x.arg,
-				setName: x.title
-			}))
 			alfy.config.set('nameOfSets', setsName)
 		})
 		.catch(error => {

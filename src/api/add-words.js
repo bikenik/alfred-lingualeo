@@ -3,7 +3,34 @@
 const alfy = require('alfy')
 const rp = require('request-promise')
 
+const WorkflowError = require('../utils/error')
+
 const search = JSON.parse(process.env.search)
+
+const runCreateSet = async input => {
+	const options = {
+		uri: `http://lingualeo.com/ru/userdict3/createWordSet?wordSet[name]=${input}`,
+		headers: {
+			Cookie: alfy.config.get('Cookie')
+		},
+		json: true // Automatically parses the JSON string in the response
+	}
+	const result = await rp(options)
+		.then(data => {
+			return data.result.id
+		}).catch(error => {
+			throw new WorkflowError(error.stack)
+		})
+	return result
+}
+
+const groupID = async () => {
+	if (/[a-zA-Z]/.test(alfy.input)) {
+		const id = await runCreateSet(alfy.input)
+		return id
+	}
+	return alfy.input
+}
 
 const addWords = async () => {
 	const options = {
@@ -19,7 +46,7 @@ const addWords = async () => {
 		form: {
 			word_id: search.word_id,
 			speech_part_id: 0,
-			groupId: alfy.input,
+			groupId: await groupID(),
 			translate_id: search.translate_id,
 			translate_value: search.translate_value,
 			user_word_value: search.user_word_value

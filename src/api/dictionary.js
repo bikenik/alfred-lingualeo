@@ -63,7 +63,7 @@ const bool = missingWordsResult => {
 		addNewWord: mode === 'allWords' && type === '0' && groupId === 'dictionary' && alfy.input !== ''
 	}
 }
-const run = async () => {
+const runDictionary = async () => {
 	await getCookie()
 	const options = {
 		uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=1&groupId=${groupId}`,
@@ -142,5 +142,5 @@ if (username === '' && password === '') {
 		subtitle: 'Pleas, fill the password and username from your LinguaLeo account'
 	}])
 } else {
-	run()
+	runDictionary()
 }
