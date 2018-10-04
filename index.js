@@ -45,7 +45,19 @@ const run = async () => {
 					arg: x.id,
 					variables: {
 						currentSet: x.name
-					}
+					},
+					mods: /\d/u.test(x.id) ? {
+						fn: {
+							subtitle: '‼️ Delete this Set ‼️',
+							arg: JSON.stringify({
+								name: x.name,
+								groupId: x.id
+							}),
+							icon: {
+								path: alfy.icon.delete
+							}
+						}
+					} : {}
 				}))
 			alfy.output(items.length > 0 ? items : [{
 				title: `add to: "${alfy.input}" set`,

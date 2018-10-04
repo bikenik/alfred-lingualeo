@@ -405,6 +405,50 @@
 			"response": []
 		},
 		{
+			"name": "Delete Set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "word_set_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "is_complete_delete",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lingualeo.com/userdict3/deleteWordSet",
+					"protocol": "https",
+					"host": [
+						"lingualeo",
+						"com"
+					],
+					"path": [
+						"userdict3",
+						"deleteWordSet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "GET",

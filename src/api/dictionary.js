@@ -63,6 +63,26 @@ const bool = missingWordsResult => {
 		addNewWord: mode === 'allWords' && type === '0' && groupId === 'dictionary' && alfy.input !== ''
 	}
 }
+const updateListOfSetName = async () => {
+	const options = {
+		uri: 'https://lingualeo.com/ru/userdict3/getWordSets',
+		headers: {
+			Cookie: alfy.config.get('Cookie')
+		},
+		json: true
+	}
+	await rp(options)
+		.then(data => {
+			const setsName = data.result.map(x => ({
+				setNumber: x.id,
+				setName: x.name
+			}))
+			alfy.config.set('nameOfSets', setsName)
+		})
+		.catch(error => {
+			throw new WorkflowError(error.stack)
+		})
+}
 const runDictionary = async () => {
 	await getCookie()
 	const options = {
@@ -136,11 +156,12 @@ const runDictionary = async () => {
 		})
 }
 
-if (username === '' && password === '') {
+if (username === '' && password === '' && alfy.config.has('nameOfSets')) {
 	alfy.output([{
 		title: 'Login and Password are missing',
 		subtitle: 'Pleas, fill the password and username from your LinguaLeo account'
 	}])
 } else {
+	updateListOfSetName()
 	runDictionary()
 }

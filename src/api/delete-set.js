@@ -4,10 +4,10 @@ const alfy = require('alfy')
 const rp = require('request-promise')
 
 const target = JSON.parse(alfy.input)
-const deleteWords = async () => {
+const deleteWordSet = async () => {
 	const options = {
 		method: 'POST',
-		uri: 'https://lingualeo.com/userdict3/deleteWords?all=0&groupId=dictionary&filter=all&search=&wordType=0&delete_source=dictionary_toolbar&wordIds_length=1',
+		uri: 'https://lingualeo.com/userdict3/deleteWordSet',
 		headers:
 		{
 			Cookie: alfy.config.get('Cookie'),
@@ -16,11 +16,8 @@ const deleteWords = async () => {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
 		form: {
-			all: 0,
-			groupId: target.groupId,
-			filter: 'all',
-			wordIds: target.word_id,
-			delete_source: 'dictionary_toolbar'
+			word_set_id: target.groupId,
+			is_complete_delete: 1
 		}
 	}
 	await rp(options)
@@ -31,8 +28,8 @@ const deleteWords = async () => {
 					JSON.stringify({
 						alfredworkflow: {
 							variables: {
-								text_notify_title: target.word_value.toUpperCase(),
-								text_notify_subtitle: 'was deleted frome your dictionary!',
+								text_notify_title: `"${target.name}" Set was deleted`,
+								text_notify_subtitle: `${result.count_deleted_words} words were deleted\n${result.count_deleted_learned_words} lerned words were deleted`,
 								error: false
 							}
 						}
@@ -56,4 +53,4 @@ const deleteWords = async () => {
 		})
 }
 
-deleteWords()
+deleteWordSet()

@@ -64,8 +64,12 @@ module.exports.wordProgress = (value, top) => {
 }
 module.exports.nameOfSetByNumber = arr => {
 	return arr.map(x => {
-		if (typeof x === 'number' && alfy.config.get('nameOfSets')) {
-			return alfy.config.get('nameOfSets').filter(y => x === y.setNumber)[0].setName
+		if (typeof x === 'number' && alfy.config.get('nameOfSets').length > 0) {
+			if (alfy.config.get('nameOfSets')
+				.filter(y => x === y.setNumber).length > 0) {
+				return alfy.config.get('nameOfSets')
+					.filter(y => x === y.setNumber)[0].setName
+			}
 		}
 		return x
 	})

@@ -34,6 +34,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>17498D45-B92B-444C-AC6D-A6A3E0B6C815</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>17A90B72-96E6-4A97-B017-B6C9C9739066</key>
 		<array>
 			<dict>
@@ -116,6 +129,49 @@
 				<false/>
 			</dict>
 		</array>
+		<key>34033431-215F-4F59-B337-E3A869D7BB55</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8B4DE4C7-3E7D-4C73-961D-315A74D7F79D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>99BEF76A-81B4-43EA-977E-00832A2E7DB8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BD992DE-9E3E-46AD-93F8-5B16E57D02D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>3CEC4ABC-1CED-4669-843D-B9CB306A30F9</key>
 		<array>
 			<dict>
@@ -164,6 +220,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>66EAB1BF-871F-49EE-9C77-31FB84732D62</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4D1317C0-6499-49D6-B515-C0960814231C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>34033431-215F-4F59-B337-E3A869D7BB55</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -481,6 +550,16 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>2AE33449-53E7-42AD-93F6-8629EDE49F58</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -518,6 +597,16 @@
 		</array>
 		<key>C805E018-8081-4664-AFD2-CEE4B6C04265</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>17498D45-B92B-444C-AC6D-A6A3E0B6C815</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>CC7B39DD-FF43-4B33-ADC4-82DF8E9B0B1A</string>
@@ -576,6 +665,54 @@
 	<string>alfred-lingualeo</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node src/api/delete-set.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>34033431-215F-4F59-B337-E3A869D7BB55</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>17498D45-B92B-444C-AC6D-A6A3E0B6C815</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>json</key>
+				<string>{
+  "alfredworkflow" : {
+    "arg" : "{query}"
+  }
+}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.json</string>
+			<key>uid</key>
+			<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -1478,9 +1615,9 @@ Spanish: 'es'</string>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<integer>1800</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>210</integer>
 		</dict>
 		<key>0663394C-A8B3-4D28-8211-6B320BC44A40</key>
 		<dict>
@@ -1489,7 +1626,7 @@ Spanish: 'es'</string>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
 		</dict>
 		<key>07470B44-7C41-40D5-8592-04598FE8C7A9</key>
 		<dict>
@@ -1497,27 +1634,36 @@ Spanish: 'es'</string>
 			<string>...
 AUDIO PLAY</string>
 			<key>xpos</key>
-			<integer>1600</integer>
+			<integer>1630</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
+		</dict>
+		<key>17498D45-B92B-444C-AC6D-A6A3E0B6C815</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>400</integer>
+			<key>ypos</key>
+			<integer>40</integer>
 		</dict>
 		<key>17A90B72-96E6-4A97-B017-B6C9C9739066</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<integer>1140</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 		</dict>
 		<key>25DA33C0-DC44-4962-B8D0-438F9AD88C79</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2100</integer>
+			<integer>2130</integer>
 			<key>ypos</key>
-			<integer>1060</integer>
+			<integer>1130</integer>
 		</dict>
 		<key>2A0DB276-C186-448B-BB6B-92AD4E7AB3CB</key>
 		<dict>
@@ -1525,63 +1671,75 @@ AUDIO PLAY</string>
 			<string>...
 WORDS</string>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>620</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>610</integer>
 		</dict>
 		<key>2AE33449-53E7-42AD-93F6-8629EDE49F58</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1760</integer>
+			<integer>1800</integer>
 			<key>ypos</key>
-			<integer>570</integer>
+			<integer>640</integer>
 		</dict>
 		<key>2BD992DE-9E3E-46AD-93F8-5B16E57D02D1</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2030</integer>
+			<integer>2060</integer>
 			<key>ypos</key>
-			<integer>1090</integer>
+			<integer>1160</integer>
 		</dict>
 		<key>3166DD64-65FD-42B4-BE50-1D0AC82D3CAE</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>5</integer>
 			<key>xpos</key>
-			<integer>2100</integer>
+			<integer>2130</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>610</integer>
+		</dict>
+		<key>34033431-215F-4F59-B337-E3A869D7BB55</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>...
+DELETE SET</string>
+			<key>xpos</key>
+			<integer>1870</integer>
+			<key>ypos</key>
+			<integer>10</integer>
 		</dict>
 		<key>3B7CC1DD-251A-44A6-A342-938BCB89EF43</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>870</integer>
+			<integer>900</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
 		</dict>
 		<key>3CEC4ABC-1CED-4669-843D-B9CB306A30F9</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>810</integer>
+			<integer>840</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>450</integer>
 		</dict>
 		<key>4036D542-DC8D-4985-8434-8F3205FC80CA</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2100</integer>
+			<integer>2130</integer>
 			<key>ypos</key>
-			<integer>910</integer>
+			<integer>980</integer>
 		</dict>
 		<key>465D11EF-AD7E-4B50-867D-ADA8702248DF</key>
 		<dict>
@@ -1589,27 +1747,36 @@ WORDS</string>
 			<string>...
 WORDS</string>
 			<key>xpos</key>
-			<integer>1170</integer>
+			<integer>1200</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
+		</dict>
+		<key>4D1317C0-6499-49D6-B515-C0960814231C</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>1800</integer>
+			<key>ypos</key>
+			<integer>40</integer>
 		</dict>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1060</integer>
+			<integer>1090</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 		</dict>
 		<key>5D219E1A-73B9-4202-BF55-A22D30040F80</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>1600</integer>
+			<integer>1630</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>260</integer>
 		</dict>
 		<key>66EAB1BF-871F-49EE-9C77-31FB84732D62</key>
 		<dict>
@@ -1617,9 +1784,9 @@ WORDS</string>
 			<string>...
 MISSING: TRUE</string>
 			<key>xpos</key>
-			<integer>1350</integer>
+			<integer>1380</integer>
 			<key>ypos</key>
-			<integer>570</integer>
+			<integer>640</integer>
 		</dict>
 		<key>70F1C1AD-1F31-4FC0-B8C4-5AF4F571208D</key>
 		<dict>
@@ -1629,9 +1796,9 @@ MISSING: TRUE</string>
 			<string>...
 DELETE WORD</string>
 			<key>xpos</key>
-			<integer>1840</integer>
+			<integer>1870</integer>
 			<key>ypos</key>
-			<integer>110</integer>
+			<integer>180</integer>
 		</dict>
 		<key>7A5D8971-EAA8-456F-A45C-67666B9DA480</key>
 		<dict>
@@ -1639,46 +1806,48 @@ DELETE WORD</string>
 			<string>...
 WORDS</string>
 			<key>xpos</key>
-			<integer>1170</integer>
+			<integer>1200</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>260</integer>
 		</dict>
 		<key>7BA1225F-7698-4C3A-8B31-7E663DB70A73</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>260</integer>
 		</dict>
 		<key>8B4DE4C7-3E7D-4C73-961D-315A74D7F79D</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>5</integer>
 			<key>xpos</key>
-			<integer>2030</integer>
+			<integer>2060</integer>
 			<key>ypos</key>
-			<integer>570</integer>
+			<integer>640</integer>
 		</dict>
 		<key>8CD92592-49C4-4325-A379-BC796125FFB4</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>5</integer>
 			<key>note</key>
 			<string>...
 MISSING: FALSE</string>
 			<key>xpos</key>
-			<integer>1520</integer>
+			<integer>1550</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>450</integer>
 		</dict>
 		<key>909CF3DF-C880-4254-8F00-0D73FFEF0E79</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1520</integer>
+			<integer>1550</integer>
 			<key>ypos</key>
-			<integer>570</integer>
+			<integer>640</integer>
 		</dict>
 		<key>95E42087-4FA8-48C8-9D62-73A70F6EDD04</key>
 		<dict>
@@ -1686,45 +1855,45 @@ MISSING: FALSE</string>
 			<string>...
 FILTER</string>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>620</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>260</integer>
 		</dict>
 		<key>99BEF76A-81B4-43EA-977E-00832A2E7DB8</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2030</integer>
+			<integer>2060</integer>
 			<key>ypos</key>
-			<integer>940</integer>
+			<integer>1010</integer>
 		</dict>
 		<key>A4F0E7AE-4FC3-492E-AC4E-92CB4177252A</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1520</integer>
+			<integer>1550</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 		</dict>
 		<key>A9509C58-73E0-432B-B98B-10577FC7125A</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<integer>1140</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>450</integer>
 		</dict>
 		<key>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2030</integer>
+			<integer>2060</integer>
 			<key>ypos</key>
-			<integer>810</integer>
+			<integer>880</integer>
 		</dict>
 		<key>AD796F2F-1E59-451A-8A9B-063102F5846C</key>
 		<dict>
@@ -1734,78 +1903,86 @@ FILTER</string>
 			<string>...
 ADD WORD</string>
 			<key>xpos</key>
-			<integer>1840</integer>
+			<integer>1870</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>610</integer>
 		</dict>
 		<key>B114B6C1-C813-4524-A907-2881A3E3BD81</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1060</integer>
+			<integer>1090</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>450</integer>
 		</dict>
 		<key>B4E1ED24-14C4-44D1-8884-9A4B01739956</key>
 		<dict>
+			<key>note</key>
+			<string>...
+LIST OF SETS</string>
 			<key>xpos</key>
-			<integer>1600</integer>
+			<integer>1630</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>610</integer>
 		</dict>
 		<key>B54C0DE1-E5AF-428C-84C9-CA9DC6E6AF41</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>1</integer>
 			<key>note</key>
 			<string>...
 MISSING: FALSE</string>
 			<key>xpos</key>
-			<integer>760</integer>
+			<integer>790</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>210</integer>
 		</dict>
 		<key>B84975E0-19AA-4D5B-BE67-9A293DEE1EC3</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
 		</dict>
 		<key>C805E018-8081-4664-AFD2-CEE4B6C04265</key>
 		<dict>
+			<key>note</key>
+			<string>...
+LIST OF SETS</string>
 			<key>xpos</key>
 			<integer>170</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>420</integer>
 		</dict>
 		<key>CC7B39DD-FF43-4B33-ADC4-82DF8E9B0B1A</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>400</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>290</integer>
 		</dict>
 		<key>EAD3810B-452F-4C22-8BB2-453C1053852E</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>400</integer>
 			<key>ypos</key>
-			<integer>570</integer>
+			<integer>640</integer>
 		</dict>
 		<key>FB62DF79-66D0-4A32-A783-DBC415C56E04</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2100</integer>
+			<integer>2130</integer>
 			<key>ypos</key>
-			<integer>780</integer>
+			<integer>850</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1824,7 +2001,7 @@ MISSING: FALSE</string>
 		<string>password</string>
 	</array>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>
