@@ -38,7 +38,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+				<string>88E810AD-905C-4C19-90AE-FFF93E875BF0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -228,19 +228,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>4D1317C0-6499-49D6-B515-C0960814231C</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>34033431-215F-4F59-B337-E3A869D7BB55</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<array>
 			<dict>
@@ -353,11 +340,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>7B783BFD-05F4-4F50-9BF1-4CD1119BA3F5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>34033431-215F-4F59-B337-E3A869D7BB55</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7BA1225F-7698-4C3A-8B31-7E663DB70A73</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>95E42087-4FA8-48C8-9D62-73A70F6EDD04</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>88E810AD-905C-4C19-90AE-FFF93E875BF0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7B783BFD-05F4-4F50-9BF1-4CD1119BA3F5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -550,13 +563,13 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+				<string>88E810AD-905C-4C19-90AE-FFF93E875BF0</string>
 				<key>modifiers</key>
 				<integer>8388608</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -605,7 +618,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -668,6 +681,33 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"\"{var:groupName}\" will be delete and all wards","arg":"1"},{"title":"\"{var:groupName}\" will be delete but words will be keep","arg":"0"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>7B783BFD-05F4-4F50-9BF1-4CD1119BA3F5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -702,14 +742,18 @@
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{query}"
+    "arg" : "",
+    "config" : {
+    },
+    "variables" : {
+    }
   }
 }</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.json</string>
 			<key>uid</key>
-			<string>4D1317C0-6499-49D6-B515-C0960814231C</string>
+			<string>88E810AD-905C-4C19-90AE-FFF93E875BF0</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1097,11 +1141,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>35</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>786432</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>L</string>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1615,7 +1659,7 @@ Spanish: 'es'</string>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1800</integer>
+			<integer>1820</integer>
 			<key>ypos</key>
 			<integer>210</integer>
 		</dict>
@@ -1661,7 +1705,7 @@ AUDIO PLAY</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2130</integer>
+			<integer>2350</integer>
 			<key>ypos</key>
 			<integer>1130</integer>
 		</dict>
@@ -1680,7 +1724,7 @@ WORDS</string>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1800</integer>
+			<integer>1820</integer>
 			<key>ypos</key>
 			<integer>640</integer>
 		</dict>
@@ -1689,7 +1733,7 @@ WORDS</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2060</integer>
+			<integer>2280</integer>
 			<key>ypos</key>
 			<integer>1160</integer>
 		</dict>
@@ -1698,7 +1742,7 @@ WORDS</string>
 			<key>colorindex</key>
 			<integer>5</integer>
 			<key>xpos</key>
-			<integer>2130</integer>
+			<integer>2350</integer>
 			<key>ypos</key>
 			<integer>610</integer>
 		</dict>
@@ -1710,7 +1754,7 @@ WORDS</string>
 			<string>...
 DELETE SET</string>
 			<key>xpos</key>
-			<integer>1870</integer>
+			<integer>2090</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -1737,7 +1781,7 @@ DELETE SET</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2130</integer>
+			<integer>2350</integer>
 			<key>ypos</key>
 			<integer>980</integer>
 		</dict>
@@ -1750,15 +1794,6 @@ WORDS</string>
 			<integer>1200</integer>
 			<key>ypos</key>
 			<integer>420</integer>
-		</dict>
-		<key>4D1317C0-6499-49D6-B515-C0960814231C</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>3</integer>
-			<key>xpos</key>
-			<integer>1800</integer>
-			<key>ypos</key>
-			<integer>40</integer>
 		</dict>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<dict>
@@ -1796,7 +1831,7 @@ MISSING: TRUE</string>
 			<string>...
 DELETE WORD</string>
 			<key>xpos</key>
-			<integer>1870</integer>
+			<integer>2090</integer>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
@@ -1810,6 +1845,13 @@ WORDS</string>
 			<key>ypos</key>
 			<integer>260</integer>
 		</dict>
+		<key>7B783BFD-05F4-4F50-9BF1-4CD1119BA3F5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1900</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 		<key>7BA1225F-7698-4C3A-8B31-7E663DB70A73</key>
 		<dict>
 			<key>colorindex</key>
@@ -1819,12 +1861,21 @@ WORDS</string>
 			<key>ypos</key>
 			<integer>260</integer>
 		</dict>
+		<key>88E810AD-905C-4C19-90AE-FFF93E875BF0</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>1820</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
 		<key>8B4DE4C7-3E7D-4C73-961D-315A74D7F79D</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>5</integer>
 			<key>xpos</key>
-			<integer>2060</integer>
+			<integer>2280</integer>
 			<key>ypos</key>
 			<integer>640</integer>
 		</dict>
@@ -1864,7 +1915,7 @@ FILTER</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2060</integer>
+			<integer>2280</integer>
 			<key>ypos</key>
 			<integer>1010</integer>
 		</dict>
@@ -1891,7 +1942,7 @@ FILTER</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2060</integer>
+			<integer>2280</integer>
 			<key>ypos</key>
 			<integer>880</integer>
 		</dict>
@@ -1903,7 +1954,7 @@ FILTER</string>
 			<string>...
 ADD WORD</string>
 			<key>xpos</key>
-			<integer>1870</integer>
+			<integer>2090</integer>
 			<key>ypos</key>
 			<integer>610</integer>
 		</dict>
@@ -1980,7 +2031,7 @@ LIST OF SETS</string>
 			<key>colorindex</key>
 			<integer>1</integer>
 			<key>xpos</key>
-			<integer>2130</integer>
+			<integer>2350</integer>
 			<key>ypos</key>
 			<integer>850</integer>
 		</dict>

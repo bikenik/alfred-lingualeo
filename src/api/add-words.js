@@ -25,7 +25,7 @@ const runCreateSet = async input => {
 }
 
 const groupID = async () => {
-	if (/[a-zA-Z]/.test(alfy.input)) {
+	if (/[a-zA-Z]/.test(alfy.input) && alfy.input !== 'dictionary') {
 		const id = await runCreateSet(alfy.input)
 		return id
 	}

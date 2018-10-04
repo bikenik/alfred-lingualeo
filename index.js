@@ -49,10 +49,10 @@ const run = async () => {
 					mods: /\d/u.test(x.id) ? {
 						fn: {
 							subtitle: '‼️ Delete this Set ‼️',
-							arg: JSON.stringify({
-								name: x.name,
+							variables: {
+								groupName: x.name,
 								groupId: x.id
-							}),
+							},
 							icon: {
 								path: alfy.icon.delete
 							}
