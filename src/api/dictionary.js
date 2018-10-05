@@ -76,7 +76,7 @@ const updateListOfSetName = async () => {
 			throw new WorkflowError(error.stack)
 		})
 }
-currentUser.login(username, password)
+
 const runDictionary = async () => {
 	const options = {
 		uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=1&groupId=${groupId}`,
@@ -148,8 +148,10 @@ const runDictionary = async () => {
 			throw new WorkflowError(error.stack)
 		})
 }
-
-if (username !== '' && password !== '') {
-	updateListOfSetName()
-	runDictionary()
-}
+(async () => {
+	await currentUser.login(username, password)
+	if (username !== '' && password !== '') {
+		updateListOfSetName()
+		runDictionary()
+	}
+})()
