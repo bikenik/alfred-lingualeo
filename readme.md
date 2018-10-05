@@ -26,6 +26,8 @@ $ npm install --global alfred-lingualeo
 ![Create, choose and delete your words in LinguaLeo](./media-readme/add-word.png)
 #### Use <kbd>⌥ + ↵</kbd> to play soud of current word
 ![Create, choose and delete your decks in LinguaLeo](./media-readme/play-action.png)
+#### Notifications
+![Notifications](./media-readme/notification-alfred-readme.png)
 
 <!-- tocstop -->
 
