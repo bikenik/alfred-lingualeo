@@ -1,35 +1,28 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
+/* eslint new-cap: ["error", { "capIsNew": false }] */
 'use strict'
 const alfy = require('alfy')
-const got = require('got')
 const rp = require('request-promise')
 
-const {username} = process.env
-const {password} = process.env
-
+const {User} = require('../utils/api')
 const WorkflowError = require('../utils/error')
 const Render = require('../utils/engine')
-const {saveAudioFile} = require('../utils')
+const {saveAudioFile} = require('../utils/api')
 const {allWords, missingWords} = require('./words')
 const {wordTypesForFilter, filterWordsByDate, datesForFilter} = require('./filter')
 
 const addToItems = new Render()
 
+const {username} = process.env
+const {password} = process.env
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
 const {audioUrl} = process.env
 const {audioFileName} = process.env
 const mode = process.argv[3]
 
-const getCookie = async () => {
-	try {
-		const response = await got(`https://lingualeo.com/api/login?email=${username}&password=${password}`)
-		alfy.config.set('Cookie', response.headers['set-cookie'])
-	} catch (error) {
-		console.log(error)
-		//	=> 'Internal server error ...'
-	}
-}
+const currentUser = User()
+
 const checkForAlreadyAdded = (items, x) => {
 	return items.length > 0 && items
 		.filter(z => z.metaInfo.id
@@ -83,8 +76,8 @@ const updateListOfSetName = async () => {
 			throw new WorkflowError(error.stack)
 		})
 }
+currentUser.login(username, password)
 const runDictionary = async () => {
-	await getCookie()
 	const options = {
 		uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=1&groupId=${groupId}`,
 		headers: {
@@ -156,12 +149,7 @@ const runDictionary = async () => {
 		})
 }
 
-if (username === '' && password === '' && alfy.config.has('nameOfSets')) {
-	alfy.output([{
-		title: 'Login and Password are missing',
-		subtitle: 'Pleas, fill the password and username from your LinguaLeo account'
-	}])
-} else {
+if (username !== '' && password !== '') {
 	updateListOfSetName()
 	runDictionary()
 }

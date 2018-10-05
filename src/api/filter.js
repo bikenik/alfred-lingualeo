@@ -3,7 +3,7 @@
 const alfy = require('alfy')
 const rp = require('request-promise')
 
-const {nameOfSetByNumber, wordProgress} = require('../utils')
+const {nameOfSetByNumber, wordProgress} = require('../utils/api')
 const Render = require('../utils/engine')
 
 const addToItems = new Render()
