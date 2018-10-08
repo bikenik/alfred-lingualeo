@@ -76,17 +76,43 @@ const updateListOfSetName = async () => {
 			throw new WorkflowError(error.stack)
 		})
 }
-
+const removeDuplicates = (myArr, prop) => {
+	return myArr.filter((obj, pos, arr) => {
+		return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
+	})
+}
 const runDictionary = async () => {
-	const options = {
-		uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=1&groupId=${groupId}`,
-		headers: {
-			Cookie: alfy.config.get('Cookie')
-		},
-		json: true // Automatically parses the JSON string in the response
+	let parseData
+	let wordExist = true
+	/* eslint-disable no-await-in-loop */
+	for (let countPage = 1; ; countPage++) {
+		const options = {
+			uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=${countPage}&groupId=${groupId}`,
+			headers: {
+				Cookie: alfy.config.get('Cookie')
+			},
+			json: true // Automatically parses the JSON string in the response
+		}
+		await rp(options)
+			.then(data => {
+				if (data.userdict3.length > 0 && countPage === 1) {
+					parseData = data
+				} else if (data.userdict3.length > 0 && countPage > 1) {
+					parseData.userdict3 = removeDuplicates([...parseData.userdict3, ...data.userdict3], 'name')
+				} else {
+					wordExist = false
+				}
+			})
+			.catch(error => {
+				throw new WorkflowError(error.stack)
+			})
+		if (!wordExist) {
+			break
+		}
 	}
-	await rp(options)
-		.then(async data => {
+	/* eslint-enable no-await-in-loop */
+	try {
+		const runParseData = async parseData => {
 			switch (mode) {
 				case 'play':
 					saveAudioFile(audioUrl, audioFileName)
@@ -98,16 +124,16 @@ const runDictionary = async () => {
 					break
 			}
 
-			for (const currentDate of data.userdict3) {
+			for (const currentDate of parseData.userdict3) {
 				switch (mode) {
 					case 'allWords':
-						addToItems.items = allWords(data, currentDate)
+						addToItems.items = allWords(parseData, currentDate)
 						break
 					case 'filter':
 						addToItems.items = datesForFilter(currentDate)
 						break
 					case currentDate.name:
-						addToItems.items = filterWordsByDate(data, currentDate)
+						addToItems.items = filterWordsByDate(parseData, currentDate)
 						break
 					default:
 						break
@@ -143,10 +169,11 @@ const runDictionary = async () => {
 				}
 			}
 			alfy.output(items.length > 0 ? items : [{title: 'Words not found'}])
-		})
-		.catch(error => {
-			throw new WorkflowError(error.stack)
-		})
+		}
+		runParseData(parseData)
+	} catch (error) {
+		throw new WorkflowError(error.stack)
+	}
 }
 (async () => {
 	await currentUser.login(username, password)
