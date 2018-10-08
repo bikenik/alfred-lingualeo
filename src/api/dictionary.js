@@ -76,8 +76,11 @@ const updateListOfSetName = async () => {
 			throw new WorkflowError(error.stack)
 		})
 }
-const removeDuplicates = (myArr, prop) => {
+const concatArrayInDublicateObj = (myArr, prop) => {
 	return myArr.filter((obj, pos, arr) => {
+		if (arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) !== pos) {
+			arr[pos - 1].words = [...arr[pos - 1].words, ...obj.words]
+		}
 		return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
 	})
 }
@@ -98,7 +101,7 @@ const runDictionary = async () => {
 				if (data.userdict3.length > 0 && countPage === 1) {
 					parseData = data
 				} else if (data.userdict3.length > 0 && countPage > 1) {
-					parseData.userdict3 = removeDuplicates([...parseData.userdict3, ...data.userdict3], 'name')
+					parseData.userdict3 = concatArrayInDublicateObj([...parseData.userdict3, ...data.userdict3], 'name')
 				} else {
 					wordExist = false
 				}
