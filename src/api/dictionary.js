@@ -33,6 +33,10 @@ const itemsReduce = (items, missingWordsResult) => {
 		title: x.title,
 		subtitle: x.subtitle,
 		arg: x.arg,
+		text: {
+			copy: x.title,
+			largetype: x.title
+		},
 		variables: {
 			missing: !checkForAlreadyAdded(items, x),
 			search: JSON.stringify({
@@ -41,7 +45,8 @@ const itemsReduce = (items, missingWordsResult) => {
 				translate_value: x.title,
 				user_word_value: x.metaInfo.user_word_value
 			}, '', 2),
-			currentSearch: x.metaInfo.user_word_value
+			currentSearch: x.metaInfo.user_word_value,
+			custom: x.name === 'your version'
 		},
 		icon: checkForAlreadyAdded(items, x) ? {
 			path: 'icons/word-exist.png'

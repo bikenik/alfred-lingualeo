@@ -172,6 +172,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3A658153-88E4-42CC-AAEE-67901C3D73EA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>909CF3DF-C880-4254-8F00-0D73FFEF0E79</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+		</array>
 		<key>3CEC4ABC-1CED-4669-843D-B9CB306A30F9</key>
 		<array>
 			<dict>
@@ -228,6 +241,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>5110B144-1250-456B-92EB-ACEFDCDCA4B0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>909CF3DF-C880-4254-8F00-0D73FFEF0E79</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<array>
 			<dict>
@@ -245,7 +271,17 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>909CF3DF-C880-4254-8F00-0D73FFEF0E79</string>
+				<string>5110B144-1250-456B-92EB-ACEFDCDCA4B0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>CFDEA871-D3AD-44EB-B9C6-02BC9A390410</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -646,6 +682,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>95E42087-4FA8-48C8-9D62-73A70F6EDD04</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CFDEA871-D3AD-44EB-B9C6-02BC9A390410</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3A658153-88E4-42CC-AAEE-67901C3D73EA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1297,25 +1346,21 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node src/api/add-words.js "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
+				<key>inputstring</key>
+				<string>{var:custom}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
 				<integer>0</integer>
+				<key>matchstring</key>
+				<string>0</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
-			<string>AD796F2F-1E59-451A-8A9B-063102F5846C</string>
+			<string>5110B144-1250-456B-92EB-ACEFDCDCA4B0</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1337,6 +1382,29 @@ fi</string>
 			<string>3166DD64-65FD-42B4-BE50-1D0AC82D3CAE</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node src/api/add-words.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AD796F2F-1E59-451A-8A9B-063102F5846C</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1528,6 +1596,51 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node src/api/custom-translate.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>custom-translate</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3A658153-88E4-42CC-AAEE-67901C3D73EA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -1562,6 +1675,25 @@ fi</string>
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:custom}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>1</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>CFDEA871-D3AD-44EB-B9C6-02BC9A390410</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1758,6 +1890,13 @@ DELETE SET</string>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
+		<key>3A658153-88E4-42CC-AAEE-67901C3D73EA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1630</integer>
+			<key>ypos</key>
+			<integer>820</integer>
+		</dict>
 		<key>3B7CC1DD-251A-44A6-A342-938BCB89EF43</key>
 		<dict>
 			<key>colorindex</key>
@@ -1795,6 +1934,16 @@ WORDS</string>
 			<key>ypos</key>
 			<integer>420</integer>
 		</dict>
+		<key>5110B144-1250-456B-92EB-ACEFDCDCA4B0</key>
+		<dict>
+			<key>note</key>
+			<string>...
+custome translate</string>
+			<key>xpos</key>
+			<integer>1470</integer>
+			<key>ypos</key>
+			<integer>560</integer>
+		</dict>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<dict>
 			<key>colorindex</key>
@@ -1819,7 +1968,7 @@ WORDS</string>
 			<string>...
 MISSING: TRUE</string>
 			<key>xpos</key>
-			<integer>1380</integer>
+			<integer>1390</integer>
 			<key>ypos</key>
 			<integer>640</integer>
 		</dict>
@@ -2017,6 +2166,16 @@ LIST OF SETS</string>
 			<key>ypos</key>
 			<integer>290</integer>
 		</dict>
+		<key>CFDEA871-D3AD-44EB-B9C6-02BC9A390410</key>
+		<dict>
+			<key>note</key>
+			<string>...
+custome translate</string>
+			<key>xpos</key>
+			<integer>1470</integer>
+			<key>ypos</key>
+			<integer>940</integer>
+		</dict>
 		<key>EAD3810B-452F-4C22-8BB2-453C1053852E</key>
 		<dict>
 			<key>colorindex</key>
@@ -2052,7 +2211,7 @@ LIST OF SETS</string>
 		<string>password</string>
 	</array>
 	<key>version</key>
-	<string>1.0.8</string>
+	<string>1.0.9</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

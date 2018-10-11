@@ -46,6 +46,7 @@ $ npm install --global alfred-lingualeo
 
 ### ToDo
 - [ ] Tests
+- [ ] Improve on speed for display of dictionary
 
 ## License
 

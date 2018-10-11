@@ -98,6 +98,17 @@ module.exports.missingWords = async input => {
 							}
 						))
 				}
+				addToItemsAdditional.add(
+					new Render('your version',
+						{title: 'add your version'},
+						{
+							metaInfo: {
+								id: null,
+								word_id: data.word_id,
+								user_word_value: alfy.input
+							}
+						}
+					))
 			} else {
 				addToItemsAdditional.add(
 					new Render('error',
