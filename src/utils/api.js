@@ -1,11 +1,8 @@
 /* eslint-env es6 */
 const fs = require('fs')
 const alfy = require('alfy')
-const got = require('got')
-
 const request = require('request-promise')
 const streamToPromise = require('stream-to-promise')
-const WorkflowError = require('./error')
 
 module.exports.saveAudioFile = async (url, fileName) => {
 	const writeStreamExp = fs.createWriteStream(
@@ -46,7 +43,7 @@ module.exports.wordProgress = (value, top) => {
 }
 module.exports.nameOfSetByNumber = arr => {
 	return arr.map(x => {
-		if (typeof x === 'number' && alfy.config.get('nameOfSets').length > 0) {
+		if (typeof x === 'number' && alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets').length > 0) {
 			if (alfy.config.get('nameOfSets')
 				.filter(y => x === y.setNumber).length > 0) {
 				return alfy.config.get('nameOfSets')
@@ -55,36 +52,4 @@ module.exports.nameOfSetByNumber = arr => {
 		}
 		return x
 	})
-}
-
-module.exports.User = () => {
-	let username
-	let password
-	const doLogin = async (user, pw) => {
-		if (user === '' && pw === '') {
-			alfy.output([{
-				title: 'Login and Password are missing',
-				subtitle: 'Pleas, fill the password and username from your LinguaLeo account'
-			}])
-		} else {
-			username = user
-			password = pw
-			try {
-				const response = await got(`https://lingualeo.com/api/login?email=${username}&password=${password}`)
-				alfy.config.set('Cookie', response.headers['set-cookie'])
-				const res = JSON.parse(response.body).user
-				const premiumUntil = new Date(res.premium_until)
-				const currentDate = new Date()
-				const oneDay = 24 * 60 * 60 * 1000
-				const leftDays = Math.round(Math.abs((premiumUntil.getTime() - currentDate.getTime()) / (oneDay)))
-				alfy.config.set('userInfo', `🦁 ${res.hungry_pct}%  📈 level: ${res.xp_level}  🥩 ${res.meatballs}  👑 left: ${leftDays} days`)
-			} catch (error) {
-				throw new WorkflowError(error.stack)
-			}
-		}
-	}
-	const userAPI = {
-		login: doLogin
-	}
-	return userAPI
 }

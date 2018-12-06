@@ -20,45 +20,66 @@ const clearSentencesInArg = arg => {
 	}
 }
 
-module.exports = class Render extends Array {
-	constructor(name, ...items) {
-		super(...items)
-		const hasProp = key => {
-			if (items.length > 0) {
-				return items
-					.filter(x => Object.prototype.hasOwnProperty
-						.call(x, key))[0] ? items.filter(x => Object.prototype.hasOwnProperty.call(x, key))[0][key] : undefined
-			}
-		}
-		this.name = name
-		this.items = []
-		this.title = hasProp('title')
-		this.subtitle = hasProp('subtitle')
-		this.sentence = hasProp('sentence')
-		this.icon = hasProp('icon')
-		this.arg = hasProp('arg')
-		this.quicklookurl = hasProp('quicklookurl')
-		this.icon = {
-			path: this.icon
-		}
-		this.autocomplete = this.title && typeof (this.title) === 'string' ? this.title.replace(/\n.* /g, '') : ''
-		this.valid = hasProp('valid') === undefined
-		this.mods = hasProp('mods') ? hasProp('mods') : {
-			ctrl: {
-				valid: true
-			}
-		}
-		this.variables = hasProp('variables')
-		largetypeFunc(this.sentence, this.arg, this.title, this.subtitle)
-		clearSentencesInArg(this.arg)
-		this.text = hasProp('text') || {
-			copy: largetype,
-			largetype
-		}
-		this.metaInfo = hasProp('metaInfo')
-	}
+const keyOperations = (item, key) => {
+	const largetype = largetypeFunc(item.sentence, item.arg, item.title, item.subtitle)
+	switch (key) {
+		case 'title':
+			item.autocomplete = item.title
+			break
+		case 'icon':
+			item.icon = {path: item.icon}
+			break
+		case 'arg':
+			clearSentencesInArg(item.arg)
+			break
 
-	add(item) {
-		this.items.push(item)
+		default:
+			break
+	}
+	return largetype
+}
+
+module.exports = class Render {
+	constructor(name, ...itemKeys) {
+		const item = {}
+		const defaultItems = {
+			name,
+			autocomplete: '',
+			valid: true,
+			text: {
+				copy: largetype,
+				largetype
+			}
+		}
+
+		for (const key in defaultItems) {
+			if (Object.prototype.hasOwnProperty.call(defaultItems, key)) {
+				item[key] = defaultItems[key]
+			}
+		}
+
+		for (const key of itemKeys) {
+			this.itemKey = null
+			Object.defineProperty(this, key, {
+				get: () => key,
+				set: value => {
+					item[key] = value
+					keyOperations(item, key)
+					/* -----------------------------
+					following rules must be runing after all iterations
+					------------------------------- */
+					if (Object.keys(item).length - Object.keys(defaultItems).length === itemKeys.length) {
+						if (!item.text) {
+							const largetype = largetypeFunc(item.sentence, item.arg, item.title, item.subtitle)
+							item.text = {
+								copy: largetype,
+								largetype
+							}
+						}
+					}
+				}
+			})
+		}
+		this.getProperties = () => item
 	}
 }

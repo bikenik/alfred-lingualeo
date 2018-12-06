@@ -1,57 +1,60 @@
 {
-  "name": "alfred-lingualeo",
-  "version": "1.0.12",
-  "description": "lingualeo dictionary",
-  "license": "MIT",
-  "repository": "bikenik/alfred-lingualeo",
-  "author": {
-    "name": "bikenik",
-    "email": "bikenik@icloud.com",
-    "url": "http://bikenik.org"
-  },
-  "engines": {
-    "node": ">=7.6"
-  },
-  "scripts": {
-    "test": "xo && ava",
-    "postinstall": "alfy-init",
-    "preuninstall": "alfy-cleanup"
-  },
-  "files": [
-    "icon.png",
-    "icons",
-    "index.js",
-    "info.plist",
-    "src"
-  ],
-  "keywords": [
-    "alfred",
-    "workflow",
-    "alfy"
-  ],
-  "dependencies": {
-    "alfy": "^0.7.0",
-    "got": "^9.2.2",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2",
-    "stream-to-promise": "^2.2.0"
-  },
-  "devDependencies": {
-    "alfy-test": "^0.3.0",
-    "ava": "^0.25.0",
-    "xo": "^0.23.0"
-  },
-  "xo": {
-    "space": false,
-    "semicolon": false,
-    "capitalized-comments": [
-      "error",
-      "always",
-      {
-        "block": {
-          "ignorePattern": "blockignore"
-        }
-      }
-    ]
-  }
+	"name": "alfred-lingualeo",
+	"version": "1.0.12",
+	"description": "lingualeo dictionary",
+	"license": "MIT",
+	"repository": "bikenik/alfred-lingualeo",
+	"author": {
+		"name": "bikenik",
+		"email": "bikenik@icloud.com",
+		"url": "http://bikenik.org"
+	},
+	"engines": {
+		"node": ">=7.6"
+	},
+	"scripts": {
+		"test": "xo && ava",
+		"postinstall": "alfy-init",
+		"preuninstall": "alfy-cleanup"
+	},
+	"files": [
+		"icon.png",
+		"3B4546FF-EEC6-459D-AC72-8A047AF33385.png",
+		"icons",
+		"index.js",
+		"info.plist",
+		"src",
+		"data"
+	],
+	"keywords": [
+		"alfred",
+		"workflow",
+		"alfy"
+	],
+	"dependencies": {
+		"alfy": "^0.8.0",
+		"got": "^9.3.2",
+		"jsonfile": "^5.0.0",
+		"request": "^2.88.0",
+		"request-promise": "^4.2.2",
+		"run-applescript": "^3.2.0",
+		"stream-to-promise": "^2.2.0"
+	},
+	"devDependencies": {
+		"ava": "^0.25.0",
+		"xo": "^0.23.0"
+	},
+	"xo": {
+		"space": false,
+		"semicolon": false,
+		"capitalized-comments": [
+			"error",
+			"always",
+			{
+				"block": {
+					"ignorePattern": "blockignore"
+				}
+			}
+		]
+	}
 }

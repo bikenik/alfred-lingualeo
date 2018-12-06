@@ -100,7 +100,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 		</array>
 		<key>2AE33449-53E7-42AD-93F6-8629EDE49F58</key>
@@ -190,6 +190,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>3B7CC1DD-251A-44A6-A342-938BCB89EF43</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3F209448-D3FA-4662-8FCA-056D802EB408</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E6C1B6EB-8453-48CB-9CFE-6656E8696F0E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -459,6 +472,16 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>335107F7-47BD-4083-A968-CBDD8E655E72</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1075,6 +1098,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>'{query}', {allvars}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>335107F7-47BD-4083-A968-CBDD8E655E72</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
 				<string>lingualeo</string>
 			</dict>
@@ -1190,11 +1230,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>35</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>786432</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>L</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1235,15 +1275,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1"
-
-if [ -e $PWD/tmp/ ]
-then
-rm -r $PWD/tmp/
-mkdir $PWD/tmp/
-else
-mkdir $PWD/tmp/
-fi</string>
+				<string>./node_modules/.bin/run-node index.js "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1471,7 +1503,7 @@ fi</string>
 				<key>queuedelayimmediatelyinitially</key>
 				<false/>
 				<key>queuedelaymode</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
@@ -1497,6 +1529,51 @@ fi</string>
 			<string>2A0DB276-C186-448B-BB6B-92AD4E7AB3CB</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node src/api/refresh-data/dictionary.js &amp;
+./node_modules/.bin/run-node src/api/refresh-data/set-of-dictionary.js
+
+if [ -e $PWD/tmp/ ]
+then
+rm -r $PWD/tmp/
+mkdir $PWD/tmp/
+else
+mkdir $PWD/tmp/
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E6C1B6EB-8453-48CB-9CFE-6656E8696F0E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>lingua-leo-refresh</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1599,6 +1676,53 @@ fi</string>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>lleo-reset</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>reset login and password...</string>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node index.js "$1" "reset"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>index.js</string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>reset login and password</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3B4546FF-EEC6-459D-AC72-8A047AF33385</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
@@ -1663,25 +1787,6 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>inputstring</key>
-				<string>{var:error}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>1</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>inputstring</key>
 				<string>{var:custom}</string>
 				<key>matchcasesensitive</key>
 				<true/>
@@ -1694,6 +1799,25 @@ fi</string>
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>CFDEA871-D3AD-44EB-B9C6-02BC9A390410</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:error}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>1</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1878,6 +2002,13 @@ WORDS</string>
 			<key>ypos</key>
 			<integer>610</integer>
 		</dict>
+		<key>335107F7-47BD-4083-A968-CBDD8E655E72</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1090</integer>
+			<key>ypos</key>
+			<integer>350</integer>
+		</dict>
 		<key>34033431-215F-4F59-B337-E3A869D7BB55</key>
 		<dict>
 			<key>colorindex</key>
@@ -1897,6 +2028,16 @@ DELETE SET</string>
 			<key>ypos</key>
 			<integer>820</integer>
 		</dict>
+		<key>3B4546FF-EEC6-459D-AC72-8A047AF33385</key>
+		<dict>
+			<key>note</key>
+			<string>...
+RESET LOGIN &amp; PASSWORD &amp; OTHER CONFIG</string>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>750</integer>
+		</dict>
 		<key>3B7CC1DD-251A-44A6-A342-938BCB89EF43</key>
 		<dict>
 			<key>colorindex</key>
@@ -1914,6 +2055,13 @@ DELETE SET</string>
 			<integer>840</integer>
 			<key>ypos</key>
 			<integer>450</integer>
+		</dict>
+		<key>3F209448-D3FA-4662-8FCA-056D802EB408</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>610</integer>
 		</dict>
 		<key>4036D542-DC8D-4985-8434-8F3205FC80CA</key>
 		<dict>
@@ -2174,7 +2322,14 @@ custome translate</string>
 			<key>xpos</key>
 			<integer>1470</integer>
 			<key>ypos</key>
-			<integer>940</integer>
+			<integer>850</integer>
+		</dict>
+		<key>E6C1B6EB-8453-48CB-9CFE-6656E8696F0E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>610</integer>
 		</dict>
 		<key>EAD3810B-452F-4C22-8BB2-453C1053852E</key>
 		<dict>
@@ -2197,18 +2352,12 @@ custome translate</string>
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>password</key>
-		<string></string>
-		<key>username</key>
-		<string></string>
 		<key>your_language</key>
 		<string>ru</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>your_language</string>
-		<string>username</string>
-		<string>password</string>
 	</array>
 	<key>version</key>
 	<string>1.0.12</string>

@@ -2,26 +2,33 @@
 /* eslint new-cap: ["error", { "capIsNew": false }] */
 'use strict'
 const alfy = require('alfy')
-const rp = require('request-promise')
-
-const {User} = require('../utils/api')
 const WorkflowError = require('../utils/error')
-const Render = require('../utils/engine')
 const {saveAudioFile} = require('../utils/api')
+const runRefresh = require('../utils/run-refresh')
 const {allWords, missingWords} = require('./words')
+const user = require('./refresh-data/user-info')
+const login = require('./login')
 const {wordTypesForFilter, filterWordsByDate, datesForFilter} = require('./filter')
 
-const addToItems = new Render()
+/* -----------------------------
+TEST api/dictionary.js
+------------------------------- */
+// const username = '2bikenik@gmail.com'
+// const password = 'ajxCbiB2mPndE'
+// const groupId = 'dictionary'
+// const type = '0'
+// const audioUrl = ''
+// const mode = 'allWords'
+// alfy.input = ''
 
-const {username} = process.env
-const {password} = process.env
+const {audioUrl, audioFileName} = process.env
+const currentSet = process.env.currentSet ? process.env.currentSet.replace(/\s/g, '-') : 'My-dictionary'
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
-const {audioUrl} = process.env
-const {audioFileName} = process.env
 const mode = process.argv[3]
-
-const currentUser = User()
+const username = alfy.config.get('login')
+const password = alfy.config.get('password')
+//-------------------
 
 const checkForAlreadyAdded = (items, x) => {
 	return items.length > 0 && items
@@ -54,6 +61,7 @@ const itemsReduce = (items, missingWordsResult) => {
 	}))]
 }
 
+alfy.input = alfy.input.replace(/\n/gm, ' ')
 alfy.input = alfy.input.replace(/.*?\u2023[\s]/gm, '')
 const bool = missingWordsResult => {
 	return {
@@ -61,72 +69,19 @@ const bool = missingWordsResult => {
 		addNewWord: mode === 'allWords' && type === '0' && groupId === 'dictionary' && alfy.input !== ''
 	}
 }
-const updateListOfSetName = async () => {
-	const options = {
-		uri: 'https://lingualeo.com/ru/userdict3/getWordSets',
-		headers: {
-			Cookie: alfy.config.get('Cookie')
-		},
-		json: true
-	}
-	await rp(options)
-		.then(data => {
-			const setsName = data.result.map(x => ({
-				setNumber: x.id,
-				setName: x.name
-			}))
-			alfy.config.set('nameOfSets', setsName)
-		})
-		.catch(error => {
-			throw new WorkflowError(error.stack)
-		})
-}
-const concatArrayInDublicateObj = (myArr, prop) => {
-	return myArr.filter((obj, pos, arr) => {
-		if (arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) !== pos) {
-			arr[pos - 1].words = [...arr[pos - 1].words, ...obj.words]
-		}
-		return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
-	})
-}
-const runDictionary = async () => {
-	let parseData
-	let wordExist = true
-	/* eslint-disable no-await-in-loop */
-	for (let countPage = 1; ; countPage++) {
-		const options = {
-			uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type}&filter=all&page=${countPage}&groupId=${groupId}`,
-			headers: {
-				Cookie: alfy.config.get('Cookie')
-			},
-			json: true // Automatically parses the JSON string in the response
-		}
-		await rp(options)
-			.then(data => {
-				if (data.userdict3.length > 0 && countPage === 1) {
-					parseData = data
-				} else if (data.userdict3.length > 0 && countPage > 1) {
-					parseData.userdict3 = concatArrayInDublicateObj([...parseData.userdict3, ...data.userdict3], 'name')
-				} else {
-					wordExist = false
-				}
-			})
-			.catch(error => {
-				throw new WorkflowError(error.stack)
-			})
-		if (!wordExist) {
-			break
-		}
-	}
-	/* eslint-enable no-await-in-loop */
+
+const runDictionary = () => {
+	const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
+	const parseData = require(`../../data/${currentSet}-${typeOf[type]}.json`)
 	try {
+		const itemsResult = []
 		const runParseData = async parseData => {
 			switch (mode) {
 				case 'play':
 					saveAudioFile(audioUrl, audioFileName)
 					break
 				case 'filter':
-					addToItems.items = await wordTypesForFilter(groupId)
+					itemsResult.push(...await wordTypesForFilter(groupId))
 					break
 				default:
 					break
@@ -135,21 +90,22 @@ const runDictionary = async () => {
 			for (const currentDate of parseData.userdict3) {
 				switch (mode) {
 					case 'allWords':
-						addToItems.items = allWords(parseData, currentDate)
+						itemsResult.push(...allWords(parseData, currentDate))
 						break
 					case 'filter':
-						addToItems.items = datesForFilter(currentDate)
+						itemsResult.push(...datesForFilter(currentDate))
 						break
 					case currentDate.name:
-						addToItems.items = filterWordsByDate(parseData, currentDate)
+						itemsResult.push(...filterWordsByDate(parseData, currentDate))
 						break
 					default:
 						break
 				}
 			}
 
-			let items = alfy.inputMatches(addToItems.items, 'title')
+			let items = alfy.inputMatches(itemsResult, 'title')
 				.map(x => ({
+					name: x.name,
 					title: x.title,
 					subtitle: x.subtitle,
 					arg: x.arg,
@@ -183,10 +139,13 @@ const runDictionary = async () => {
 		throw new WorkflowError(error.stack)
 	}
 }
-(async () => {
-	await currentUser.login(username, password)
-	if (username !== '' && password !== '') {
-		updateListOfSetName()
+if (username && password) {
+	(async () => {
+		const currentUser = user()
+		await currentUser.login(username, password)
 		runDictionary()
-	}
-})()
+		runRefresh()
+	})()
+} else {
+	login(username, password)
+}

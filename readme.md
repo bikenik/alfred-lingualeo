@@ -1,8 +1,8 @@
 # alfred-lingualeo [![Build Status](https://travis-ci.org/bikenik/alfred-lingualeo.svg?branch=master)](https://travis-ci.org/bikenik/alfred-lingualeo)
 
-# ![LinguaLeo](media-readme/icon.png)
+## ![LinguaLeo](media-readme/icon.png)
 
-#### Search in your LinguaLeo's dictionary by headword or phrase or by selected text from anywhere and add new words, phrase, sentence. 
+## Search in your LinguaLeo's dictionary by headword or phrase or by selected text from anywhere and add new: words / phrase / sentence
 
 ![Search by headword](./media-readme/main-window.png)
 
@@ -21,12 +21,17 @@ $ npm install --global alfred-lingualeo
 
 <!-- toc -->
 
-#### Create, choose and delete your words in LinguaLeo
+### Create, choose and delete your words in LinguaLeo
+
 ![Create, choose and delete your words in LinguaLeo](./media-readme/delete-action.png)
 ![Create, choose and delete your words in LinguaLeo](./media-readme/add-word.png)
-#### Use <kbd>⌥ + ↵</kbd> to play soud of current word
+
+### Use <kbd>⌥ + ↵</kbd> to play soud of current word
+
 ![Create, choose and delete your decks in LinguaLeo](./media-readme/play-action.png)
-#### Notifications
+
+### Notifications
+
 ![Notifications](./media-readme/notification-alfred-readme.png)
 
 <!-- tocstop -->
@@ -42,9 +47,11 @@ $ npm install --global alfred-lingualeo
 - your_language: ru, es
 
 ### Postman collection of LinguaLeo's API:
+
 - [Postman Collection](https://github.com/bikenik/alfred-lingualeo/blob/master/Lingua-Leo.postman_collection.json)
 
 ### ToDo
+
 - [ ] Tests
 - [ ] Improve on speed for display of dictionary
 
