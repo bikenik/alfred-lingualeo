@@ -70,7 +70,7 @@ const fetchingMissingWords = data => {
 	if (data.error_msg === '' && data.translate.length > 0) {
 		for (const translate of data.translate) {
 			const item = new Render('missing words',
-				'title', 'subtitle', 'metaInfo')
+				'title', 'subtitle', 'metaInfo', 'icon')
 			item.title = translate.value
 			item.subtitle = translate.votes
 			item.metaInfo = {
@@ -78,11 +78,13 @@ const fetchingMissingWords = data => {
 				word_id: data.word_id,
 				user_word_value: alfy.input
 			}
+			item.icon = 'icons/jungle.png'
 			addToItemsAdditional.push(item.getProperties())
 		}
 		const item = new Render('your version',
-			'title', 'metaInfo')
+			'title', 'icon', 'metaInfo')
 		item.title = 'add your version'
+		item.icon = 'icons/Option.png'
 		item.metaInfo = {
 			id: null,
 			word_id: data.word_id,

@@ -10,6 +10,7 @@ const username = alfy.config.get('login')
 const password = alfy.config.get('password')
 
 const updateListOfSetName = async () => {
+	const setsOfDictionary = './data/sets-of-dictionary.json'
 	const options = {
 		uri: 'https://lingualeo.com/ru/userdict3/getWordSets',
 		headers: {
@@ -19,6 +20,13 @@ const updateListOfSetName = async () => {
 	}
 	await rp(options)
 		.then(data => {
+			jsonfile.writeFile(setsOfDictionary, data, {
+				spaces: 2
+			}, err => {
+				if (err !== null) {
+					console.error(err)
+				}
+			})
 			const setsName = data.result.map(x => ({
 				setNumber: x.id,
 				setName: x.name
@@ -69,7 +77,7 @@ const runApi = async () => {
 	const currentUser = user()
 	await currentUser.login(username, password)
 	if (username !== '' && password !== '') {
-		updateListOfSetName()
+		await updateListOfSetName()
 	}
 	for (const dic of alfy.config.get('nameOfSets')) {
 		const nameOfSet = dic.setName.replace(/\s/g, '-')
@@ -104,4 +112,8 @@ const runApi = async () => {
 		}
 	}
 }
+
+// (async () => {
+// 	await sets()
+// })()
 runApi()

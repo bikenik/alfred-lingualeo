@@ -6,29 +6,13 @@ const WorkflowError = require('../utils/error')
 const {saveAudioFile} = require('../utils/api')
 const runRefresh = require('../utils/run-refresh')
 const {allWords, missingWords} = require('./words')
-const user = require('./refresh-data/user-info')
-const login = require('./login')
 const {wordTypesForFilter, filterWordsByDate, datesForFilter} = require('./filter')
-
-/* -----------------------------
-TEST api/dictionary.js
-------------------------------- */
-// const username = '2bikenik@gmail.com'
-// const password = 'ajxCbiB2mPndE'
-// const groupId = 'dictionary'
-// const type = '0'
-// const audioUrl = ''
-// const mode = 'allWords'
-// alfy.input = ''
 
 const {audioUrl, audioFileName} = process.env
 const currentSet = process.env.currentSet ? process.env.currentSet.replace(/\s/g, '-') : 'My-dictionary'
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
 const mode = process.argv[3]
-const username = alfy.config.get('login')
-const password = alfy.config.get('password')
-//-------------------
 
 const checkForAlreadyAdded = (items, x) => {
 	return items.length > 0 && items
@@ -57,7 +41,7 @@ const itemsReduce = (items, missingWordsResult) => {
 		},
 		icon: checkForAlreadyAdded(items, x) ? {
 			path: 'icons/word-exist.png'
-		} : {path: 'icons/jungle.png'}
+		} : x.icon
 	}))]
 }
 
@@ -139,13 +123,28 @@ const runDictionary = () => {
 		throw new WorkflowError(error.stack)
 	}
 }
-if (username && password) {
-	(async () => {
-		const currentUser = user()
-		await currentUser.login(username, password)
-		runDictionary()
-		runRefresh()
-	})()
+
+if (alfy.config.get('login') === undefined) {
+	alfy.output([{
+		title: `Your login is: ${alfy.input}`,
+		subtitle: 'Please, fill in and check your input above and hit ↵',
+		icon: {path: './icons/Login.png'},
+		arg: alfy.input,
+		variables: {
+			inputMode: 'login'
+		}
+	}])
+} else if (alfy.config.get('password') === undefined) {
+	alfy.output([{
+		title: `Your password is: ${alfy.input}`,
+		subtitle: 'Please, fill in and check your input above and hit ↵',
+		icon: {path: './icons/Password.png'},
+		arg: alfy.input,
+		variables: {
+			inputMode: 'password'
+		}
+	}])
 } else {
-	login(username, password)
+	runDictionary()
+	runRefresh()
 }

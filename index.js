@@ -2,17 +2,10 @@
 'use strict'
 const alfy = require('alfy')
 const Render = require('./src/utils/engine')
-const User = require('./src/api/refresh-data/user-info')
-const login = require('./src/api/login')
 const runRefresh = require('./src/utils/run-refresh')
 
-const username = alfy.config.get('login')
-const password = alfy.config.get('password')
-
-const run = async () => {
+const run = () => {
 	const data = require('./data/sets-of-dictionary.json')
-	const currentUser = User()
-	await currentUser.login(username, password)
 	const userInfo = alfy.config.get('userInfo')
 
 	alfy.input = alfy.input.replace(/.*?\u2023[\s]/gm, '')
@@ -65,14 +58,16 @@ const run = async () => {
 	}
 	alfy.config.set('nameOfSets', setsName)
 }
-
 if (process.argv[3] === 'reset') {
-	alfy.config.clear()
-	alfy.config.delete('password')
 	alfy.config.delete('login')
-} else if (username && password) {
+	alfy.config.delete('password')
+} else if (alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets').length > 0) {
 	run()
 	runRefresh()
 } else {
-	login(username, password)
+	alfy.output([{
+		title: 'The config of your account is not dowload yet',
+		subtitle: 'type \'lleo-dic\' to login and try later',
+		icon: {path: alfy.icon.info}
+	}])
 }
