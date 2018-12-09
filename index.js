@@ -74,7 +74,7 @@ if (/!.*/.test(alfy.input)) {
 		icon: {path: alfy.icon.delete}
 	}])
 } else if (alfy.config.get('nameOfSets') === undefined || alfy.config.get('nameOfSets').length === 0) {
-	alfy.output([waitMessage])
+	alfy.output(waitMessage)
 } else {
 	fs.access('data/sets-of-dictionary.json',
 		fs.constants.F_OK, error => {
