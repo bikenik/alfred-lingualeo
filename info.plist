@@ -1621,12 +1621,9 @@ fi</string>
 				<key>script</key>
 				<string>./node_modules/.bin/run-node src/api/refresh-data/dictionary.js
 
-if [ -e $PWD/tmp/ ]
+if [ -e $PWD/tmp ]
 then
-rm -r $PWD/tmp/
-mkdir $PWD/tmp/
-else
-mkdir $PWD/tmp/
+rm -rf ${PWD}/tmp/*.*
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -1668,7 +1665,15 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node src/api/dictionary.js "$1" "allWords"</string>
+				<string>if [ ! -e $PWD/data/ ]
+then
+mkdir $PWD/data/
+fi
+if [ ! -e $PWD/tmp/ ]
+then
+mkdir $PWD/tmp/
+fi
+./node_modules/.bin/run-node src/api/dictionary.js "$1" "allWords"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -2586,7 +2591,7 @@ custome translate</string>
 		<string>your_language</string>
 	</array>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

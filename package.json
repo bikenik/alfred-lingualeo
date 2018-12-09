@@ -19,12 +19,10 @@
 	},
 	"files": [
 		"icon.png",
-		"3B4546FF-EEC6-459D-AC72-8A047AF33385.png",
 		"icons",
 		"index.js",
 		"info.plist",
-		"src",
-		"data"
+		"src"
 	],
 	"keywords": [
 		"alfred",

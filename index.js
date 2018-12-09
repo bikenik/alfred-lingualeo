@@ -1,6 +1,7 @@
 /* eslint new-cap: ["error", { "capIsNew": false }] */
 /* eslint import/no-unresolved: [2, { commonjs: false, amd: false }] */
 'use strict'
+const fs = require('fs')
 const alfy = require('alfy')
 const Render = require('./src/utils/engine')
 const runRefresh = require('./src/utils/run-refresh')
@@ -59,6 +60,12 @@ const run = () => {
 	}
 	alfy.config.set('nameOfSets', setsName)
 }
+
+const waitMessage = [{
+	title: 'The config of your account is not dowload yet',
+	subtitle: 'type \'lleo-dic\' to login and try later',
+	icon: {path: alfy.icon.info}
+}]
 if (/!.*/.test(alfy.input)) {
 	alfy.output([{
 		title: 'reset login and password',
@@ -66,13 +73,16 @@ if (/!.*/.test(alfy.input)) {
 		variables: {loginMode: 'reset'},
 		icon: {path: alfy.icon.delete}
 	}])
-} else if (alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets').length > 0) {
-	run()
-	runRefresh()
+} else if (alfy.config.get('nameOfSets') === undefined || alfy.config.get('nameOfSets').length === 0) {
+	alfy.output([waitMessage])
 } else {
-	alfy.output([{
-		title: 'The config of your account is not dowload yet',
-		subtitle: 'type \'lleo-dic\' to login and try later',
-		icon: {path: alfy.icon.info}
-	}])
+	fs.access('data/sets-of-dictionary.json',
+		fs.constants.F_OK, error => {
+			if (error) {
+				alfy.output(waitMessage)
+			} else {
+				run()
+				runRefresh()
+			}
+		})
 }
