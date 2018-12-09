@@ -6,3 +6,6 @@ if (process.argv[3] === 'login') {
 if (process.argv[3] === 'password') {
 	alfy.config.set('password', process.argv[2])
 }
+if (process.argv[3] === 'reset') {
+	alfy.config.clear()
+}

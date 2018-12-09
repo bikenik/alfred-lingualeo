@@ -242,7 +242,18 @@
 			</dict>
 		</array>
 		<key>461031C7-0059-4B35-8CB4-9C57BE7967B0</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4B00032E-5037-4D5D-934D-97E1CAE3AB24</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>465D11EF-AD7E-4B50-867D-ADA8702248DF</key>
 		<array>
 			<dict>
@@ -278,6 +289,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>66EAB1BF-871F-49EE-9C77-31FB84732D62</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4B00032E-5037-4D5D-934D-97E1CAE3AB24</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AB7A0886-F415-4FAB-863D-96664B7571D0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1330,7 +1354,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node src/api/login.js "$1" "$inputMode"</string>
+				<string>./node_modules/.bin/run-node src/api/login.js "$1" "$loginMode"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1484,6 +1508,38 @@ fi</string>
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>5110B144-1250-456B-92EB-ACEFDCDCA4B0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:loginMode}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>reset</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>4B00032E-5037-4D5D-934D-97E1CAE3AB24</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>lingua-leo-refresh</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1657,19 +1713,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>lingua-leo-refresh</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
@@ -1765,6 +1808,44 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Config file has been reset</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>AB7A0886-F415-4FAB-863D-96664B7571D0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>largetypetext</key>
+				<string>⛔ Something went wrong
+
+ℹ️ {query}
+
+💡 To reset your login &amp; password type '!' in query search</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>externaltriggerid</key>
 				<string>lingua-leo-refresh</string>
 				<key>passinputasargument</key>
@@ -1784,23 +1865,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>largetypetext</key>
-				<string>⛔ Something went wrong
-
-ℹ️ {query}
-
-💡 To reset your login &amp; password type 'lleo-reset'</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>inputstring</key>
 				<string>{query}</string>
 				<key>matchcasesensitive</key>
@@ -1816,72 +1880,6 @@ fi</string>
 			<string>E5B544B0-BCDC-4635-8322-C2E199C6D6B0</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>lingua-leo-refresh</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>2</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>lleo-reset</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>1</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>reset login and password...</string>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1" "reset"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>index.js</string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>reset login and password</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>3B4546FF-EEC6-459D-AC72-8A047AF33385</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1946,6 +1944,25 @@ fi</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>FB62DF79-66D0-4A32-A783-DBC415C56E04</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>lingua-leo-refresh</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2070,6 +2087,7 @@ fi</string>
 	</array>
 	<key>readme</key>
 	<string>Fill in your pass and email of your LinguaLeo's account
+Type &lt;!&gt; to reset config with Login &amp; Password
 
 choose your language:
 Russian: 'ru',
@@ -2194,16 +2212,6 @@ DELETE SET</string>
 			<key>ypos</key>
 			<integer>820</integer>
 		</dict>
-		<key>3B4546FF-EEC6-459D-AC72-8A047AF33385</key>
-		<dict>
-			<key>note</key>
-			<string>...
-RESET LOGIN &amp; PASSWORD &amp; OTHER CONFIG</string>
-			<key>xpos</key>
-			<integer>30</integer>
-			<key>ypos</key>
-			<integer>820</integer>
-		</dict>
 		<key>3B7CC1DD-251A-44A6-A342-938BCB89EF43</key>
 		<dict>
 			<key>colorindex</key>
@@ -2257,6 +2265,13 @@ WORDS</string>
 			<integer>1200</integer>
 			<key>ypos</key>
 			<integer>420</integer>
+		</dict>
+		<key>4B00032E-5037-4D5D-934D-97E1CAE3AB24</key>
+		<dict>
+			<key>xpos</key>
+			<integer>950</integer>
+			<key>ypos</key>
+			<integer>570</integer>
 		</dict>
 		<key>5110B144-1250-456B-92EB-ACEFDCDCA4B0</key>
 		<dict>
@@ -2395,9 +2410,9 @@ FILTER</string>
 		<key>9C600E03-BAA5-4890-A667-E39929C324CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>860</integer>
+			<integer>910</integer>
 			<key>ypos</key>
-			<integer>730</integer>
+			<integer>770</integer>
 		</dict>
 		<key>A4F0E7AE-4FC3-492E-AC4E-92CB4177252A</key>
 		<dict>
@@ -2425,6 +2440,13 @@ FILTER</string>
 			<integer>2280</integer>
 			<key>ypos</key>
 			<integer>850</integer>
+		</dict>
+		<key>AB7A0886-F415-4FAB-863D-96664B7571D0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1120</integer>
+			<key>ypos</key>
+			<integer>770</integer>
 		</dict>
 		<key>AD796F2F-1E59-451A-8A9B-063102F5846C</key>
 		<dict>
@@ -2564,7 +2586,7 @@ custome translate</string>
 		<string>your_language</string>
 	</array>
 	<key>version</key>
-	<string>1.0.12</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

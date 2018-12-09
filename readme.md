@@ -39,11 +39,10 @@ $ npm install --global alfred-lingualeo
 </details>
 
 - In Alfred, type `lleo`, <kbd>Enter</kbd>, and your query.
+- Type <kbd>!</kbd> to *reset/change* password, login.
 
 ## Configuration
 
-- username: your email (account linguaLeo)
-- password: your password (account linguaLeo)
 - your_language: ru, es
 
 ### Postman collection of LinguaLeo's API:
@@ -53,7 +52,7 @@ $ npm install --global alfred-lingualeo
 ### ToDo
 
 - [ ] Tests
-- [ ] Improve on speed for display of dictionary
+- [x] Improve on speed for display of dictionary
 
 ## License
 

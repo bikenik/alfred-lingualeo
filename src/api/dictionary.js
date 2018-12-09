@@ -1,6 +1,7 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
 /* eslint new-cap: ["error", { "capIsNew": false }] */
 'use strict'
+const fs = require('fs')
 const alfy = require('alfy')
 const WorkflowError = require('../utils/error')
 const {saveAudioFile} = require('../utils/api')
@@ -13,6 +14,7 @@ const currentSet = process.env.currentSet ? process.env.currentSet.replace(/\s/g
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
 const mode = process.argv[3]
+const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
 
 const checkForAlreadyAdded = (items, x) => {
 	return items.length > 0 && items
@@ -55,7 +57,6 @@ const bool = missingWordsResult => {
 }
 
 const runDictionary = () => {
-	const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
 	const parseData = require(`../../data/${currentSet}-${typeOf[type]}.json`)
 	try {
 		const itemsResult = []
@@ -104,7 +105,7 @@ const runDictionary = () => {
 			let missingWordsResult
 			if (bool().addNewWord) {
 				missingWordsResult = await missingWords(alfy.input)
-				if (missingWordsResult[0] && missingWordsResult[0].name !== 'error') {
+				if (missingWordsResult[0] && missingWordsResult[0].name !== 'error' && missingWordsResult[0].title) {
 					items = bool(missingWordsResult).missing ?
 						[{
 							title: missingWordsResult[0].title,
@@ -116,7 +117,7 @@ const runDictionary = () => {
 					items = missingWordsResult[0]
 				}
 			}
-			alfy.output(items.length > 0 ? items : [{title: 'Words not found'}])
+			alfy.output(items.length > 0 ? items : [{title: 'Word not found'}])
 		}
 		runParseData(parseData)
 	} catch (error) {
@@ -124,14 +125,21 @@ const runDictionary = () => {
 	}
 }
 
-if (alfy.config.get('login') === undefined) {
+if (/!.*/.test(alfy.input)) {
+	alfy.output([{
+		title: 'reset login and password',
+		subtitle: 'hit ↵ to reset your login & password',
+		variables: {loginMode: 'reset'},
+		icon: {path: alfy.icon.delete}
+	}])
+} else if (alfy.config.get('login') === undefined) {
 	alfy.output([{
 		title: `Your login is: ${alfy.input}`,
 		subtitle: 'Please, fill in and check your input above and hit ↵',
 		icon: {path: './icons/Login.png'},
 		arg: alfy.input,
 		variables: {
-			inputMode: 'login'
+			loginMode: 'login'
 		}
 	}])
 } else if (alfy.config.get('password') === undefined) {
@@ -141,10 +149,21 @@ if (alfy.config.get('login') === undefined) {
 		icon: {path: './icons/Password.png'},
 		arg: alfy.input,
 		variables: {
-			inputMode: 'password'
+			loginMode: 'password'
 		}
 	}])
 } else {
-	runDictionary()
-	runRefresh()
+	fs.access(`data/${currentSet}-${typeOf[type]}.json`, fs.constants.F_OK, error => {
+		if (error) {
+			runRefresh()
+			alfy.output([{
+				title: 'Wait for downloading data from server'
+			}])
+		} else {
+			runDictionary()
+		}
+	})
+	if (!process.env.loginMode) {
+		runRefresh()
+	}
 }

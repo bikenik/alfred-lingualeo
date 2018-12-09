@@ -68,7 +68,7 @@ typings/
 
 #other
 .DS_Store
-mycomment.js
+test
 data/*.json
 
 # End of https://www.gitignore.io/api/node

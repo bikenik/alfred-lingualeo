@@ -1,4 +1,5 @@
 /* eslint new-cap: ["error", { "capIsNew": false }] */
+/* eslint import/no-unresolved: [2, { commonjs: false, amd: false }] */
 'use strict'
 const alfy = require('alfy')
 const Render = require('./src/utils/engine')
@@ -58,9 +59,13 @@ const run = () => {
 	}
 	alfy.config.set('nameOfSets', setsName)
 }
-if (process.argv[3] === 'reset') {
-	alfy.config.delete('login')
-	alfy.config.delete('password')
+if (/!.*/.test(alfy.input)) {
+	alfy.output([{
+		title: 'reset login and password',
+		subtitle: 'hit ↵ to reset your login & password',
+		variables: {loginMode: 'reset'},
+		icon: {path: alfy.icon.delete}
+	}])
 } else if (alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets').length > 0) {
 	run()
 	runRefresh()
