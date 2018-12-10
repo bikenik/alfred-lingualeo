@@ -122,16 +122,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>C61611BE-7896-4393-8068-C0C2DB229E95</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>2AE33449-53E7-42AD-93F6-8629EDE49F58</key>
 		<array>
@@ -1556,6 +1546,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>lingua-leo-refresh</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1722,19 +1725,6 @@ fi
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>3166DD64-65FD-42B4-BE50-1D0AC82D3CAE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>lingua-leo-refresh</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1912,23 +1902,6 @@ ERROR MESSAGE IS: {query}
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>'{query}', {allvars}</string>
-				<key>cleardebuggertext</key>
-				<false/>
-				<key>processoutputs</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.debug</string>
-			<key>uid</key>
-			<string>C61611BE-7896-4393-8068-C0C2DB229E95</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>inputstring</key>
 				<string>{query}</string>
 				<key>matchcasesensitive</key>
@@ -1942,25 +1915,6 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>E5B544B0-BCDC-4635-8322-C2E199C6D6B0</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>lingua-leo-refresh</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2027,6 +1981,25 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>FB62DF79-66D0-4A32-A783-DBC415C56E04</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>lingua-leo-refresh</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2560,13 +2533,6 @@ MISSING: FALSE</string>
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
-		<key>C61611BE-7896-4393-8068-C0C2DB229E95</key>
-		<dict>
-			<key>xpos</key>
-			<integer>790</integer>
-			<key>ypos</key>
-			<integer>790</integer>
-		</dict>
 		<key>C805E018-8081-4664-AFD2-CEE4B6C04265</key>
 		<dict>
 			<key>note</key>
@@ -2651,7 +2617,7 @@ custome translate</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.5</string>
+	<string>1.1.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>
