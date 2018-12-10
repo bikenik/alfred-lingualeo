@@ -52,7 +52,7 @@ module.exports.allWords = (data, currentData) => {
 }
 const switchTargetLanguage = async (input, src) => {
 	const items = []
-	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=${src}&target=en`)
+	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=ru&target=en`)
 		.then(data => {
 			const item = new Render('rus translation',
 				'title', 'valid')
