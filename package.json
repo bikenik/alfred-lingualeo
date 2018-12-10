@@ -33,6 +33,7 @@
 		"alfy": "^0.8.0",
 		"got": "^9.3.2",
 		"jsonfile": "^5.0.0",
+		"languagedetect": "^1.2.0",
 		"request": "^2.88.0",
 		"request-promise": "^4.2.2",
 		"run-applescript": "^3.2.0",

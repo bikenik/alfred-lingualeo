@@ -2,12 +2,13 @@
 'use strict'
 const alfy = require('alfy')
 const rp = require('request-promise')
+const LanguageDetect = require('languagedetect')
 
 const WorkflowError = require('../utils/error')
 const {nameOfSetByNumber, wordProgress} = require('../utils/api')
 const Render = require('../utils/engine')
 
-const yourLanguage = process.env.your_language
+const lngDetector = new LanguageDetect()
 
 module.exports.allWords = (data, currentData) => {
 	const items = []
@@ -52,15 +53,17 @@ module.exports.allWords = (data, currentData) => {
 	}
 	return items
 }
-const switchTargetLanguage = async input => {
+const switchTargetLanguage = async (input, src) => {
 	const items = []
-	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=${yourLanguage}&target=en`)
+	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=${src}&target=en`)
 		.then(data => {
 			const item = new Render('rus translation',
 				'title', 'valid')
 			item.title = data.translation
 			item.valid = false
 			items.push(item.getProperties())
+		}).catch(error => {
+			process.stderr.write(error)
 		})
 	return items
 }
@@ -100,8 +103,12 @@ const fetchingMissingWords = data => {
 }
 
 module.exports.missingWords = async input => {
-	if (!/[a-zA-Z]/.test(input)) {
-		return switchTargetLanguage(input)
+	lngDetector.detect(input)
+	const srcLanguage = ['russian', 'spanish']
+		.map(y => lngDetector.detect(input)
+			.filter((x, i) => i < 9 && x[0] === y)[0]).filter(x => x)[0]
+	if (srcLanguage) {
+		return switchTargetLanguage(input, srcLanguage[0] === 'russian' ? 'ru' : 'es')
 	}
 	const options = {
 		uri: `https://lingualeo.com/api/gettranslates?word=${input}`,
