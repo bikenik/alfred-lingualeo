@@ -24,7 +24,8 @@ const run = () => {
 		item.subtitle = `🅰 words: ${set.countWords}${set.id === 'dictionary' ? `  ${userInfo}` : ''}`
 		item.arg = set.id
 		item.variables = {
-			currentSet: set.name
+			currentSetName: set.name,
+			currentSetId: set.id.toString()
 		}
 		item.mods = /\d/u.test(set.id) ? {
 			fn: {
@@ -53,7 +54,7 @@ const run = () => {
 		alfy.output(itemsResultArr.length > 0 ? itemsResultArr : [{
 			title: `add to: "${alfy.input}" set`,
 			variables: {
-				currentSet: alfy.input
+				currentSetName: alfy.input
 			},
 			arg: alfy.input
 		}])

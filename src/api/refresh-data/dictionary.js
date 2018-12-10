@@ -49,10 +49,10 @@ const concatArrayInDublicateObj = (myArr, prop) => {
 
 let parseData
 let wordExist = true
-const getData = (data, countPage, nameOfSet, type) => {
-	if (data.userdict3.length > 0 && countPage === 1) {
+const getData = (data, countPage, setNumber, type) => {
+	if (countPage === 1) {
 		parseData = data
-		jsonfile.writeFile(`./data/${nameOfSet}-${type.name}.json`, parseData, {
+		jsonfile.writeFile(`./data/${setNumber}-${type.name}.json`, parseData, {
 			spaces: 2
 		}, err => {
 			if (err !== null) {
@@ -61,7 +61,7 @@ const getData = (data, countPage, nameOfSet, type) => {
 		})
 	} else if (data.userdict3.length > 0 && countPage > 1) {
 		parseData.userdict3 = concatArrayInDublicateObj([...parseData.userdict3, ...data.userdict3], 'name')
-		jsonfile.writeFile(`./data/${nameOfSet}-${type.name}.json`, parseData, {
+		jsonfile.writeFile(`./data/${setNumber}-${type.name}.json`, parseData, {
 			spaces: 2
 		}, err => {
 			if (err !== null) {
@@ -80,7 +80,7 @@ const runApi = async () => {
 		await updateListOfSetName()
 	}
 	for (const dic of alfy.config.get('nameOfSets')) {
-		const nameOfSet = dic.setName.replace(/\s/g, '-')
+		const setNumber = dic.setNumber.toString()
 		const typeOfItems = [
 			{name: 'allTypes', index: '0'},
 			{name: 'Words', index: '1'},
@@ -99,7 +99,7 @@ const runApi = async () => {
 				/* eslint-disable no-await-in-loop */
 				await rp(options)
 					.then(data => {
-						getData(data, countPage, nameOfSet, type)
+						getData(data, countPage, setNumber, type)
 					})
 					.catch(error => {
 						throw new WorkflowError(error.stack)
@@ -113,7 +113,4 @@ const runApi = async () => {
 	}
 }
 
-// (async () => {
-// 	await sets()
-// })()
 runApi()

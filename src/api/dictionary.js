@@ -10,7 +10,7 @@ const {allWords, missingWords} = require('./words')
 const {wordTypesForFilter, filterWordsByDate, datesForFilter} = require('./filter')
 
 const {audioUrl, audioFileName} = process.env
-const currentSet = process.env.currentSet ? process.env.currentSet.replace(/\s/g, '-') : 'My-dictionary'
+const currentSet = process.env.currentSetId ? process.env.currentSetId : alfy.config.get('nameOfSets')[0].setNumber
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
 const mode = process.argv[3]

@@ -60,8 +60,8 @@ const addWords = async () => {
 					JSON.stringify({
 						alfredworkflow: {
 							variables: {
-								text_notify_title: result.xp_points_added ? `${search.user_word_value}` : `Added: "${JSON.parse(process.env.search).user_word_value}" (to ${process.env.currentSet})`,
-								text_notify_subtitle: result.xp_points_added ? `${search.translate_value}\n[${process.env.currentSet}] \n🦁 ${result.hungry}%  |  XP: ${result.xp_points_daily} / ${result.xp_points_daily_norm} | ${result.xp_points_remaining} | 📈: ${result.xp_level}` : `${result.userdict3.related_words[0].translate_value}`,
+								text_notify_title: result.xp_points_added ? `${search.user_word_value}` : `Added: "${JSON.parse(process.env.search).user_word_value}" (to ${process.env.currentSetName})`,
+								text_notify_subtitle: result.xp_points_added ? `${search.translate_value}\n[${process.env.currentSetName}] \n🦁 ${result.hungry}%  |  XP: ${result.xp_points_daily} / ${result.xp_points_daily_norm} | ${result.xp_points_remaining} | 📈: ${result.xp_level}` : `${result.userdict3.related_words[0].translate_value}`,
 								error: false
 							}
 						}

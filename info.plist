@@ -122,6 +122,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C61611BE-7896-4393-8068-C0C2DB229E95</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>2AE33449-53E7-42AD-93F6-8629EDE49F58</key>
 		<array>
@@ -1127,7 +1137,7 @@
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{var:currentSet}: {var:mode}‣ ",
+    "arg" : "{var:currentSetName}: {var:mode}‣ ",
     "variables" : {
       "type" : "{var:type}",
       "audioFileName": "{var:audioFileName}",
@@ -1149,7 +1159,7 @@
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{var:currentSet}: select for sorting‣ ",
+    "arg" : "{var:currentSetName}: select for sorting‣ ",
     "variables" : {
       "groupId" : "{var:groupId}",
       "type" : "0"
@@ -1189,7 +1199,7 @@
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{var:currentSet}: select for sorting‣ ",
+    "arg" : "{var:currentSetName}: select for sorting‣ ",
     "variables" : {
       "groupId" : "{query}",
       "audioFileName" : "{var:audioFileName}",
@@ -1445,7 +1455,7 @@ fi</string>
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{var:currentSet}: {var:typeName}‣ ",
+    "arg" : "{var:currentSetName}: {var:typeName}‣ ",
     "variables" : {
       "type" : "{var:type}",
       "audioFileName": "{var:audioFileName}",
@@ -1473,11 +1483,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>35</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>786432</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>L</string>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1738,7 +1748,7 @@ fi
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{var:currentSet}‣ ",
+    "arg" : "{var:currentSetName}‣ ",
     "variables" : {
       "groupId" : "{query}",
       "audioFileName" : "{var:audioFileName}",
@@ -1864,6 +1874,23 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.output.callexternaltrigger</string>
 			<key>uid</key>
 			<string>9C600E03-BAA5-4890-A667-E39929C324CF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>'{query}', {allvars}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>C61611BE-7896-4393-8068-C0C2DB229E95</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2501,6 +2528,13 @@ MISSING: FALSE</string>
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
+		<key>C61611BE-7896-4393-8068-C0C2DB229E95</key>
+		<dict>
+			<key>xpos</key>
+			<integer>790</integer>
+			<key>ypos</key>
+			<integer>790</integer>
+		</dict>
 		<key>C805E018-8081-4664-AFD2-CEE4B6C04265</key>
 		<dict>
 			<key>note</key>
@@ -2578,7 +2612,7 @@ custome translate</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.4</string>
+	<string>1.1.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

@@ -43,7 +43,7 @@ $ npm install --global alfred-lingualeo
 
 ## Configuration
 
-- available translate to english from: russian, spanish
+- available translation english < = > russian
 
 ### Postman collection of LinguaLeo's API:
 
