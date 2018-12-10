@@ -802,6 +802,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>D11A07AC-4C77-4E48-B297-867A89089405</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2A0DB276-C186-448B-BB6B-92AD4E7AB3CB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>E5B544B0-BCDC-4635-8322-C2E199C6D6B0</key>
 		<array>
 			<dict>
@@ -832,7 +845,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2A0DB276-C186-448B-BB6B-92AD4E7AB3CB</string>
+				<string>D11A07AC-4C77-4E48-B297-867A89089405</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1543,19 +1556,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>lingua-leo-refresh</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1728,6 +1728,19 @@ fi
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>lingua-leo-refresh</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3F209448-D3FA-4662-8FCA-056D802EB408</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
@@ -1762,6 +1775,25 @@ fi
 			<string>alfred.workflow.utility.json</string>
 			<key>uid</key>
 			<string>EAD3810B-452F-4C22-8BB2-453C1053852E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:loginMode}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>reset</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>D11A07AC-4C77-4E48-B297-867A89089405</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1916,6 +1948,25 @@ ERROR MESSAGE IS: {query}
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>lingua-leo-refresh</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -1976,25 +2027,6 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>FB62DF79-66D0-4A32-A783-DBC415C56E04</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>lingua-leo-refresh</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>20F8FD7E-E933-47EE-9AE6-C116921E4BC6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2563,6 +2595,13 @@ custome translate</string>
 			<integer>1470</integer>
 			<key>ypos</key>
 			<integer>850</integer>
+		</dict>
+		<key>D11A07AC-4C77-4E48-B297-867A89089405</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>640</integer>
 		</dict>
 		<key>E5B544B0-BCDC-4635-8322-C2E199C6D6B0</key>
 		<dict>

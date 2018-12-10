@@ -50,7 +50,7 @@ module.exports.allWords = (data, currentData) => {
 	}
 	return items
 }
-const switchTargetLanguage = async (input, src) => {
+const switchTargetLanguage = async input => {
 	const items = []
 	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=ru&target=en`)
 		.then(data => {
