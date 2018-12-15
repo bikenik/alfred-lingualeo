@@ -125,7 +125,7 @@ const runDictionary = () => {
 	}
 }
 
-if (/!.*/.test(alfy.input)) {
+if (/^!.*/.test(alfy.input)) {
 	alfy.output([{
 		title: 'reset login and password',
 		subtitle: 'hit ↵ to reset your login & password',

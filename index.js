@@ -67,7 +67,7 @@ const waitMessage = [{
 	subtitle: 'type \'lleo-dic\' to login and try later',
 	icon: {path: alfy.icon.info}
 }]
-if (/!.*/.test(alfy.input)) {
+if (/^!.*/.test(alfy.input)) {
 	alfy.output([{
 		title: 'reset login and password',
 		subtitle: 'hit ↵ to reset your login & password',
