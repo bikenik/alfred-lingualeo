@@ -25,7 +25,9 @@ const itemsReduce = (items, missingWordsResult) => {
 	return [...items, ...alfy.matches('', missingWordsResult, 'title').map(x => ({
 		title: x.title,
 		subtitle: x.subtitle,
-		arg: x.arg,
+		arg: x.arg ? x.arg : null,
+		autocomplete: x.autocomplete ? x.autocomplete : null,
+		valid: x.valid ? x.valid : false,
 		text: {
 			copy: x.title,
 			largetype: x.title
@@ -33,12 +35,12 @@ const itemsReduce = (items, missingWordsResult) => {
 		variables: {
 			missing: !checkForAlreadyAdded(items, x),
 			search: JSON.stringify({
-				translate_id: x.metaInfo.id,
-				word_id: x.metaInfo.word_id,
+				translate_id: x.metaInfo ? x.metaInfo.id : '',
+				word_id: x.metaInfo ? x.metaInfo.word_id : '',
 				translate_value: x.title,
-				user_word_value: x.metaInfo.user_word_value
+				user_word_value: x.metaInfo ? x.metaInfo.user_word_value : ''
 			}, '', 2),
-			currentSearch: x.metaInfo.user_word_value,
+			currentSearch: x.metaInfo ? x.metaInfo.user_word_value : '',
 			custom: x.name === 'your version'
 		},
 		icon: checkForAlreadyAdded(items, x) ? {
@@ -126,12 +128,20 @@ const runDictionary = () => {
 }
 
 if (/^!.*/.test(alfy.input)) {
-	alfy.output([{
-		title: 'reset login and password',
-		subtitle: 'hit ↵ to reset your login & password',
-		variables: {loginMode: 'reset'},
-		icon: {path: alfy.icon.delete}
-	}])
+	alfy.output([
+		{
+			title: 'reset login and password',
+			subtitle: 'hit ↵ to reset your login & password',
+			variables: {settingMode: 'reset'},
+			icon: {path: alfy.icon.delete}
+		},
+		{
+			title: 'toogle color of icons for dark/light theme',
+			subtitle: 'hit ↵ to toogle day or night theme',
+			variables: {settingMode: 'theme'},
+			icon: {path: 'icons/night_and_day.png'}
+		}
+	])
 } else if (alfy.config.get('login') === undefined) {
 	alfy.output([{
 		title: `Your login is: ${alfy.input}`,
@@ -139,7 +149,7 @@ if (/^!.*/.test(alfy.input)) {
 		icon: {path: './icons/Login.png'},
 		arg: alfy.input,
 		variables: {
-			loginMode: 'login'
+			settingMode: 'login'
 		}
 	}])
 } else if (alfy.config.get('password') === undefined) {
@@ -149,7 +159,7 @@ if (/^!.*/.test(alfy.input)) {
 		icon: {path: './icons/Password.png'},
 		arg: alfy.input,
 		variables: {
-			loginMode: 'password'
+			settingMode: 'password'
 		}
 	}])
 } else {
@@ -163,7 +173,7 @@ if (/^!.*/.test(alfy.input)) {
 			runDictionary()
 		}
 	})
-	if (!process.env.loginMode) {
+	if (!process.env.settingMode) {
 		runRefresh()
 	}
 }

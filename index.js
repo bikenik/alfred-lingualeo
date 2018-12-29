@@ -64,16 +64,24 @@ const run = () => {
 
 const waitMessage = [{
 	title: 'The config of your account is not dowload yet',
-	subtitle: 'type \'lleo-dic\' to login and try later',
+	subtitle: 'type \'lleo-dic\' or press ↵ to login...',
 	icon: {path: alfy.icon.info}
 }]
 if (/^!.*/.test(alfy.input)) {
-	alfy.output([{
-		title: 'reset login and password',
-		subtitle: 'hit ↵ to reset your login & password',
-		variables: {loginMode: 'reset'},
-		icon: {path: alfy.icon.delete}
-	}])
+	alfy.output([
+		{
+			title: 'reset login and password',
+			subtitle: 'hit ↵ to reset your login & password',
+			variables: {settingMode: 'reset'},
+			icon: {path: alfy.icon.delete}
+		},
+		{
+			title: 'toogle color of icons for dark/light theme',
+			subtitle: 'hit ↵ to toogle day or night theme',
+			variables: {settingMode: 'theme'},
+			icon: {path: 'icons/night_and_day.png'}
+		}
+	])
 } else if (alfy.config.get('nameOfSets') === undefined || alfy.config.get('nameOfSets').length === 0) {
 	alfy.output(waitMessage)
 } else {

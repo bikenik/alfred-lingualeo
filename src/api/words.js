@@ -50,6 +50,7 @@ module.exports.allWords = (data, currentData) => {
 	}
 	return items
 }
+
 const switchTargetLanguage = async input => {
 	const items = []
 	await alfy.fetch(`https://lingualeo.com/translate.php?q=${encodeURIComponent(input.normalize())}&from=&source=ru&target=en`)
@@ -66,7 +67,31 @@ const switchTargetLanguage = async input => {
 }
 
 const addToItemsAdditional = []
-const fetchingMissingWords = data => {
+
+const yandexSpeller = async input => {
+	/* ****************************************
+	Search by suggestions (Yandex Speller)
+	******************************************* */
+	try {
+		const data = await alfy.fetch(`https://speller.yandex.net/services/spellservice.json/checkText?text=${input}&lang=en`)
+		if (data.length > 0) {
+			return data[0].s.map(x => {
+				const item = new Render('Yandex Speller',
+					'title', 'subtitle', 'autocomlete', 'valid', 'icon')
+				item.title = x
+				item.subtitle = `Perhaps you mean: ${x}`
+				item.autocomplete = x
+				item.valid = false
+				item.icon = './icons/speller.png'
+				return item.getProperties()
+			})
+		}
+	} catch (error) {
+		throw new WorkflowError(error.stack)
+	}
+}
+
+const fetchingMissingWords = async data => {
 	if (data.error_msg === '' && data.translate.length > 0) {
 		for (const translate of data.translate) {
 			const item = new Render('missing words',
@@ -80,6 +105,28 @@ const fetchingMissingWords = data => {
 			}
 			item.icon = 'icons/jungle.png'
 			addToItemsAdditional.push(item.getProperties())
+		}
+		if (data.word_forms.length > 0) {
+			for (const translate of data.word_forms) {
+				const item = new Render('base forms',
+					'title', 'subtitle', 'metaInfo', 'icon', 'autocomplete', 'valid')
+				item.title = `Base form is: ${translate.word}`
+				item.subtitle = `${translate.type}`
+				item.valid = false
+				item.autocomplete = translate.word
+				item.metaInfo = {
+					id: translate.id,
+					word_id: data.word_id,
+					user_word_value: alfy.input
+				}
+				item.icon = 'icons/base_form.png'
+				addToItemsAdditional.push(item.getProperties())
+			}
+		}
+
+		const spellerChecked = await yandexSpeller(alfy.input)
+		if (spellerChecked) {
+			addToItemsAdditional.push(...spellerChecked)
 		}
 		const item = new Render('your version',
 			'title', 'icon', 'metaInfo')
@@ -97,6 +144,7 @@ const fetchingMissingWords = data => {
 		item.title = `Word "${alfy.input}" not found`
 		addToItemsAdditional.push(item.getProperties())
 	}
+	return addToItemsAdditional
 }
 
 module.exports.missingWords = async input => {
@@ -110,12 +158,11 @@ module.exports.missingWords = async input => {
 		},
 		json: true // Automatically parses the JSON string in the response
 	}
-	await rp(options)
-		.then(data => {
-			fetchingMissingWords(data)
-		})
-		.catch(error => {
-			throw new WorkflowError(error.stack)
-		})
-	return addToItemsAdditional
+
+	try {
+		const data = await rp(options)
+		return await fetchingMissingWords(data)
+	} catch (error) {
+		throw new WorkflowError(error.stack)
+	}
 }

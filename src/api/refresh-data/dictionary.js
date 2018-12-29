@@ -59,7 +59,7 @@ const getData = (data, countPage, setNumber, type) => {
 				console.error(err)
 			}
 		})
-	} else if (data.userdict3.length > 0 && countPage > 1) {
+	} else if (data.userdict3 && data.userdict3.length > 0 && countPage > 1) {
 		parseData.userdict3 = concatArrayInDublicateObj([...parseData.userdict3, ...data.userdict3], 'name')
 		jsonfile.writeFile(`./data/${setNumber}-${type.name}.json`, parseData, {
 			spaces: 2

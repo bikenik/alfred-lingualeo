@@ -122,6 +122,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>53CE158E-1639-44CC-9D08-571AFB02DF8A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>2AE33449-53E7-42AD-93F6-8629EDE49F58</key>
 		<array>
@@ -315,6 +325,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>909CF3DF-C880-4254-8F00-0D73FFEF0E79</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>53CE158E-1639-44CC-9D08-571AFB02DF8A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A1F2D425-56BC-4C4C-B320-4FB24E2004B6</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -569,6 +592,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>A1F2D425-56BC-4C4C-B320-4FB24E2004B6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3AD90F52-BF46-475C-A0DE-64191A803306</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A4F0E7AE-4FC3-492E-AC4E-92CB4177252A</key>
 		<array>
 			<dict>
@@ -765,6 +801,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F265C525-7EC4-4E10-AA1A-DEB9D388E314</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>CC7B39DD-FF43-4B33-ADC4-82DF8E9B0B1A</key>
 		<array>
@@ -836,6 +882,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>D11A07AC-4C77-4E48-B297-867A89089405</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F265C525-7EC4-4E10-AA1A-DEB9D388E314</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>53CE158E-1639-44CC-9D08-571AFB02DF8A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1245,7 +1304,7 @@
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1"</string>
+				<string>./node_modules/.bin/run-node index.js "$1" "$theme"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1367,7 +1426,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node src/api/login.js "$1" "$loginMode"</string>
+				<string>./node_modules/.bin/run-node src/api/login.js "$1" "$settingMode"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1528,7 +1587,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>inputstring</key>
-				<string>{var:loginMode}</string>
+				<string>{var:settingMode}</string>
 				<key>matchcasesensitive</key>
 				<true/>
 				<key>matchmode</key>
@@ -1772,7 +1831,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>inputstring</key>
-				<string>{var:loginMode}</string>
+				<string>{var:settingMode}</string>
 				<key>matchcasesensitive</key>
 				<true/>
 				<key>matchmode</key>
@@ -2065,6 +2124,50 @@ ERROR MESSAGE IS: {query}
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node src/utils/theme.js</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A1F2D425-56BC-4C4C-B320-4FB24E2004B6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Theme was toogled</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3AD90F52-BF46-475C-A0DE-64191A803306</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>inputstring</key>
 				<string>{var:post_failed}</string>
 				<key>matchcasesensitive</key>
@@ -2078,6 +2181,33 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>99BEF76A-81B4-43EA-977E-00832A2E7DB8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>F265C525-7EC4-4E10-AA1A-DEB9D388E314</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:settingMode}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>theme</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>53CE158E-1639-44CC-9D08-571AFB02DF8A</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2124,7 +2254,9 @@ ERROR MESSAGE IS: {query}
 	</array>
 	<key>readme</key>
 	<string>Fill in your pass and email of your LinguaLeo's account
-Type &lt;!&gt; to reset config with Login &amp; Password</string>
+Type &lt;!&gt; to: 
+	- reset config with Login &amp; Password
+	- toogle color of icons for dark/light theme</string>
 	<key>uidata</key>
 	<dict>
 		<key>00C6C86B-7B40-4D93-A60C-694F3CB3EBA4</key>
@@ -2245,6 +2377,13 @@ DELETE SET</string>
 			<key>ypos</key>
 			<integer>820</integer>
 		</dict>
+		<key>3AD90F52-BF46-475C-A0DE-64191A803306</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1120</integer>
+			<key>ypos</key>
+			<integer>960</integer>
+		</dict>
 		<key>3B7CC1DD-251A-44A6-A342-938BCB89EF43</key>
 		<dict>
 			<key>colorindex</key>
@@ -2315,6 +2454,13 @@ custome translate</string>
 			<integer>1470</integer>
 			<key>ypos</key>
 			<integer>560</integer>
+		</dict>
+		<key>53CE158E-1639-44CC-9D08-571AFB02DF8A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>840</integer>
+			<key>ypos</key>
+			<integer>990</integer>
 		</dict>
 		<key>5A10E8CF-6E8A-45BE-962A-A9A30D2643FF</key>
 		<dict>
@@ -2443,9 +2589,19 @@ FILTER</string>
 		<key>9C600E03-BAA5-4890-A667-E39929C324CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>910</integer>
+			<integer>900</integer>
 			<key>ypos</key>
 			<integer>770</integer>
+		</dict>
+		<key>A1F2D425-56BC-4C4C-B320-4FB24E2004B6</key>
+		<dict>
+			<key>note</key>
+			<string>...
+TOOGLE THEME</string>
+			<key>xpos</key>
+			<integer>900</integer>
+			<key>ypos</key>
+			<integer>960</integer>
 		</dict>
 		<key>A4F0E7AE-4FC3-492E-AC4E-92CB4177252A</key>
 		<dict>
@@ -2592,6 +2748,13 @@ custome translate</string>
 			<key>ypos</key>
 			<integer>640</integer>
 		</dict>
+		<key>F265C525-7EC4-4E10-AA1A-DEB9D388E314</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>990</integer>
+		</dict>
 		<key>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</key>
 		<dict>
 			<key>xpos</key>
@@ -2617,7 +2780,7 @@ custome translate</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.8</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>
