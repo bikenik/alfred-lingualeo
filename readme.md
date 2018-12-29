@@ -40,6 +40,7 @@ $ npm install --global alfred-lingualeo
 
 - In Alfred, type `lleo`, <kbd>Enter</kbd>, and your query.
 - Type <kbd>!</kbd> to *reset/change* password, login.
+- Type <kbd>!</kbd> to toogle color of icons for dark/light Alfred's theme.
 
 ## Configuration
 
@@ -53,6 +54,8 @@ $ npm install --global alfred-lingualeo
 
 - [ ] Tests
 - [x] Improve on speed for display of dictionary
+- [x] Speller checker from Yandex
+- [x] Toggle icons for day/night themes
 
 ## License
 
