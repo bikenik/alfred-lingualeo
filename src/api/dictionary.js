@@ -25,7 +25,7 @@ const itemsReduce = (items, missingWordsResult) => {
 	return [...items, ...alfy.matches('', missingWordsResult, 'title').map(x => ({
 		title: x.title,
 		subtitle: x.subtitle,
-		arg: x.arg ? x.arg : null,
+		arg: x.arg ? x.arg : '',
 		autocomplete: x.autocomplete ? x.autocomplete : null,
 		valid: x.valid ? x.valid : false,
 		text: {
