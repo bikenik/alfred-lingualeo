@@ -19,7 +19,7 @@ const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
 const checkForAlreadyAdded = (items, x) => {
 	return items.length > 0 && items
 		.filter(z => z.metaInfo.id
-			.filter(y => y === x.metaInfo.id).length > 0).length > 0
+			.filter(y => x.metaInfo && y === x.metaInfo.id).length > 0).length > 0
 }
 const itemsReduce = (items, missingWordsResult) => {
 	return [...items, ...alfy.matches('', missingWordsResult, 'title').map(x => ({
