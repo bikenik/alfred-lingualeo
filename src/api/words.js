@@ -13,7 +13,7 @@ const starVotes = (versions, i) => {
 	do {
 		current--
 		stars += '⭑'
-	} while (current !== 0)
+	} while (current > 0)
 
 	return stars
 }
@@ -111,7 +111,9 @@ const fetchingMissingWords = async data => {
 	}
 
 	if (data.error_msg === '' && data.userdict3.translations.length > 0) {
-		data.userdict3.translations.forEach((translate, i) => {
+		data.userdict3.translations.sort((a, b) => {
+			return b.translate_votes - a.translate_votes
+		}).forEach((translate, i) => {
 			const item = new Render('missing words',
 				'title', 'subtitle', 'metaInfo', 'icon')
 			item.title = translate.translate_value
@@ -134,8 +136,8 @@ const fetchingMissingWords = async data => {
 					item.valid = false
 					item.autocomplete = translate.lemma_value
 					item.metaInfo = {
-						id: translate.id,
-						word_id: data.word_id,
+						id: translate.translate_id,
+						word_id: data.userdict3.word_id,
 						user_word_value: alfy.input
 					}
 					item.icon = data.userdict3.word_top > 0 ? wordProgress('keyword', data.userdict3.word_top) : 'icons/keyword.png'
@@ -158,8 +160,8 @@ const fetchingMissingWords = async data => {
 					item.valid = false
 					item.autocomplete = translate.lemma_value
 					item.metaInfo = {
-						id: translate.id,
-						word_id: data.word_id,
+						id: translate.translate_id,
+						word_id: data.userdict3.word_id,
 						user_word_value: alfy.input
 					}
 					item.icon = 'icons/keyword.png'
@@ -174,7 +176,7 @@ const fetchingMissingWords = async data => {
 		item.icon = 'icons/Option.png'
 		item.metaInfo = {
 			id: null,
-			word_id: data.word_id,
+			word_id: data.userdict3.word_id,
 			user_word_value: alfy.input
 		}
 		addToItemsAdditional.push(item.getProperties())
