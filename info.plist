@@ -1926,7 +1926,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>largetypetext</key>
-				<string>! Something went wrong
+				<string>! Something went wrong with "alfred-lingualeo"
 
 ERROR MESSAGE IS: {query}
 
@@ -2380,7 +2380,7 @@ DELETE SET</string>
 		<key>3AD90F52-BF46-475C-A0DE-64191A803306</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1120</integer>
+			<integer>1160</integer>
 			<key>ypos</key>
 			<integer>960</integer>
 		</dict>
@@ -2589,7 +2589,7 @@ FILTER</string>
 		<key>9C600E03-BAA5-4890-A667-E39929C324CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>900</integer>
+			<integer>940</integer>
 			<key>ypos</key>
 			<integer>770</integer>
 		</dict>
@@ -2599,7 +2599,7 @@ FILTER</string>
 			<string>...
 TOOGLE THEME</string>
 			<key>xpos</key>
-			<integer>900</integer>
+			<integer>940</integer>
 			<key>ypos</key>
 			<integer>960</integer>
 		</dict>
@@ -2633,7 +2633,7 @@ TOOGLE THEME</string>
 		<key>AB7A0886-F415-4FAB-863D-96664B7571D0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1120</integer>
+			<integer>1160</integer>
 			<key>ypos</key>
 			<integer>770</integer>
 		</dict>
@@ -2780,7 +2780,7 @@ custome translate</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.3</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>

@@ -14,6 +14,7 @@ const currentSet = process.env.currentSetId ? process.env.currentSetId : alfy.co
 const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
 const type = process.env.type ? process.env.type : '0'
 const mode = process.argv[3]
+
 const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
 
 const checkForAlreadyAdded = (items, x) => {
@@ -21,13 +22,23 @@ const checkForAlreadyAdded = (items, x) => {
 		.filter(z => z.metaInfo.id
 			.filter(y => x.metaInfo && y === x.metaInfo.id).length > 0).length > 0
 }
+
+const arraymove = (arr, fromIndex, toIndex) => {
+	const element = arr[fromIndex]
+	arr.splice(fromIndex, 1)
+	arr.splice(toIndex, 0, element)
+	return arr
+}
+
 const itemsReduce = (items, missingWordsResult) => {
 	return [...items, ...alfy.matches('', missingWordsResult, 'title').map(x => ({
+		name: x.name,
 		title: x.title,
 		subtitle: x.subtitle,
 		arg: x.arg ? x.arg : '',
 		autocomplete: x.autocomplete ? x.autocomplete : null,
 		valid: x.valid ? x.valid : false,
+		mods: x.mods,
 		text: {
 			copy: x.title,
 			largetype: x.title
@@ -119,7 +130,7 @@ const runDictionary = () => {
 					items = missingWordsResult[0]
 				}
 			}
-			alfy.output(items.length > 0 ? items : [{title: 'Word not found'}])
+			alfy.output(items.length > 0 ? items[items.length - 2] && items[items.length - 2].name === 'main base form' ? arraymove(items, items.length - 2, 0) : items : [{title: 'Word not found'}])
 		}
 		runParseData(parseData)
 	} catch (error) {

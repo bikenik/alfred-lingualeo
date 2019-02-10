@@ -7,6 +7,16 @@ const WorkflowError = require('../utils/error')
 const {nameOfSetByNumber, wordProgress} = require('../utils/api')
 const Render = require('../utils/engine')
 
+const starVotes = (versions, i) => {
+	let current = versions - i
+	let stars = ''
+	do {
+		current--
+		stars += '⭑'
+	} while (current !== 0)
+	return stars
+}
+
 module.exports.allWords = (data, currentData) => {
 	const items = []
 	for (const word of currentData.words) {
@@ -92,42 +102,68 @@ const yandexSpeller = async input => {
 }
 
 const fetchingMissingWords = async data => {
-	if (data.error_msg === '' && data.translate.length > 0) {
-		for (const translate of data.translate) {
+	const spellerChecked = await yandexSpeller(alfy.input)
+	if (spellerChecked) {
+		addToItemsAdditional.push(...spellerChecked)
+	}
+	if (data.error_msg === '' && data.userdict3.translations.length > 0) {
+		data.userdict3.translations.forEach((translate, i) => {
 			const item = new Render('missing words',
 				'title', 'subtitle', 'metaInfo', 'icon')
-			item.title = translate.value
-			item.subtitle = translate.votes
+			item.title = translate.translate_value
+			item.subtitle = starVotes(data.userdict3.translations.length, i)
 			item.metaInfo = {
-				id: translate.id,
-				word_id: data.word_id,
+				id: translate.translate_id,
+				word_id: data.userdict3.word_id,
 				user_word_value: alfy.input
 			}
 			item.icon = 'icons/jungle.png'
 			addToItemsAdditional.push(item.getProperties())
-		}
-		if (data.word_forms.length > 0) {
-			for (const translate of data.word_forms) {
-				const item = new Render('base forms',
-					'title', 'subtitle', 'metaInfo', 'icon', 'autocomplete', 'valid')
-				item.title = `Base form is: ${translate.word}`
-				item.subtitle = `${translate.type}`
-				item.valid = false
-				item.autocomplete = translate.word
-				item.metaInfo = {
-					id: translate.id,
-					word_id: data.word_id,
-					user_word_value: alfy.input
+		})
+		if (data.userdict3.lemmas.length > 0) {
+			data.userdict3.lemmas.forEach((translate, i) => {
+				if (i === data.userdict3.lemmas.length - 1) {
+					const item = new Render('main base form',
+						'title', 'subtitle', 'metaInfo', 'icon', 'autocomplete', 'valid', 'mods')
+					item.title = `${translate.lemma_value}\t\t[${data.userdict3.transcription}]`
+					item.subtitle = `${translate.speech_part.code}`
+					item.valid = false
+					item.autocomplete = translate.lemma_value
+					item.metaInfo = {
+						id: translate.id,
+						word_id: data.word_id,
+						user_word_value: alfy.input
+					}
+					item.icon = data.userdict3.word_top > 0 ? wordProgress('keyword', data.userdict3.word_top) : 'icons/keyword.png'
+					item.mods = {
+						alt: {
+							subtitle: '⏯ PLAY',
+							variables: {
+								audioFileName: data.userdict3.word_id,
+								audioUrl: data.userdict3.sound_url,
+								missing: false
+							}
+						}
+					}
+					addToItemsAdditional.push(item.getProperties())
+				} else {
+					const item = new Render('base forms',
+						'title', 'subtitle', 'metaInfo', 'icon', 'autocomplete', 'valid')
+					item.title = `Base form is: ${translate.lemma_value}`
+					item.subtitle = `${translate.speech_part.code}`
+					item.valid = false
+					item.autocomplete = translate.lemma_value
+					item.metaInfo = {
+						id: translate.id,
+						word_id: data.word_id,
+						user_word_value: alfy.input
+					}
+					item.icon = 'icons/keyword.png'
+					addToItemsAdditional.push(item.getProperties())
 				}
-				item.icon = 'icons/base_form.png'
-				addToItemsAdditional.push(item.getProperties())
-			}
+			})
 		}
 
-		const spellerChecked = await yandexSpeller(alfy.input)
-		if (spellerChecked) {
-			addToItemsAdditional.push(...spellerChecked)
-		}
 		const item = new Render('your version',
 			'title', 'icon', 'metaInfo')
 		item.title = 'add your version'
@@ -152,7 +188,7 @@ module.exports.missingWords = async input => {
 		return switchTargetLanguage(input)
 	}
 	const options = {
-		uri: `https://lingualeo.com/api/gettranslates?word=${input}`,
+		uri: `https://lingualeo.com/userdict3/getTranslations?word_value=${input}&groupId=&_=`,
 		headers: {
 			Cookie: alfy.config.get('Cookie')
 		},

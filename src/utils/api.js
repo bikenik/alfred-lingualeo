@@ -37,6 +37,8 @@ module.exports.wordProgress = (value, top) => {
 			return wordTop('three_quarters', top)
 		case 100:
 			return wordTop('done', top)
+		case 'keyword':
+			return wordTop('keyword', top)
 		default:
 			return wordTop('initial', top)
 	}
