@@ -29,6 +29,7 @@ const groupID = async () => {
 		const id = await runCreateSet(alfy.input)
 		return id
 	}
+
 	return alfy.input
 }
 

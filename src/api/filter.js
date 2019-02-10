@@ -40,7 +40,7 @@ module.exports.wordTypesForFilter = async groupId => {
 				countOfWords = data.count_words ? data.count_words.toString() : ''
 			})
 			.catch(error => {
-				console.log('MYERROR: ', error)
+				console.log('MYERROR:', error)
 			})
 		/* eslint-enable no-await-in-loop */
 		const item = new Render('sort by type to Alfred',
@@ -54,6 +54,7 @@ module.exports.wordTypesForFilter = async groupId => {
 		}
 		items.push(item.getProperties())
 	}
+
 	return items
 }
 
@@ -95,5 +96,6 @@ module.exports.filterWordsByDate = (data, currentData) => {
 		}
 		items.push(item.getProperties())
 	}
+
 	return items.length > 0 ? items : [{title: 'Words not found'}]
 }

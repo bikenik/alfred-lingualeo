@@ -27,6 +27,7 @@ const wordTop = (currentCase, top) => {
 			return `icons/${currentCase}.png`
 	}
 }
+
 module.exports.wordProgress = (value, top) => {
 	switch (value) {
 		case 25:
@@ -43,6 +44,7 @@ module.exports.wordProgress = (value, top) => {
 			return wordTop('initial', top)
 	}
 }
+
 module.exports.nameOfSetByNumber = arr => {
 	return arr.map(x => {
 		if (typeof x === 'number' && alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets').length > 0) {
@@ -52,6 +54,7 @@ module.exports.nameOfSetByNumber = arr => {
 					.filter(y => x === y.setNumber)[0].setName
 			}
 		}
+
 		return x
 	})
 }

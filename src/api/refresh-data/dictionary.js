@@ -43,6 +43,7 @@ const concatArrayInDublicateObj = (myArr, prop) => {
 		if (arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) !== pos) {
 			arr[pos - 1].words = [...arr[pos - 1].words, ...obj.words]
 		}
+
 		return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
 	})
 }
@@ -79,6 +80,7 @@ const runApi = async () => {
 	if (username !== '' && password !== '') {
 		await updateListOfSetName()
 	}
+
 	for (const dic of alfy.config.get('nameOfSets')) {
 		const setNumber = dic.setNumber.toString()
 		const typeOfItems = [

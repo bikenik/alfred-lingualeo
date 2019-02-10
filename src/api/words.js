@@ -14,6 +14,7 @@ const starVotes = (versions, i) => {
 		current--
 		stars += '⭑'
 	} while (current !== 0)
+
 	return stars
 }
 
@@ -56,8 +57,10 @@ module.exports.allWords = (data, currentData) => {
 		item.metaInfo = {
 			id: typeof (word.user_translates) === 'object' ? word.user_translates.map(x => x.translate_id) : word.user_translates.translate_id
 		}
+
 		items.push(item.getProperties())
 	}
+
 	return items
 }
 
@@ -106,6 +109,7 @@ const fetchingMissingWords = async data => {
 	if (spellerChecked) {
 		addToItemsAdditional.push(...spellerChecked)
 	}
+
 	if (data.error_msg === '' && data.userdict3.translations.length > 0) {
 		data.userdict3.translations.forEach((translate, i) => {
 			const item = new Render('missing words',
@@ -180,6 +184,7 @@ const fetchingMissingWords = async data => {
 		item.title = `Word "${alfy.input}" not found`
 		addToItemsAdditional.push(item.getProperties())
 	}
+
 	return addToItemsAdditional
 }
 
@@ -187,6 +192,7 @@ module.exports.missingWords = async input => {
 	if (!/[a-zA-Z]/.test(input)) {
 		return switchTargetLanguage(input)
 	}
+
 	const options = {
 		uri: `https://lingualeo.com/userdict3/getTranslations?word_value=${input}&groupId=&_=`,
 		headers: {

@@ -10,6 +10,7 @@ const largetypeFunc = (sentence, arg, title, subtitle) => {
 		largetype = `${title}${arg.sense && arg.sense.register_label ? ` ⇒ [${arg.sense.register_label}]` : ''}\n\n🔑 :${subtitle}${Array.isArray(sentence) ? `\n\n🎯 ${sentence.map(x => x).join('\n🎯 ')}` : /🎲/.test(sentence) ? sentence : `\n\n🎯 ${sentence}`}`
 	}
 }
+
 const clearSentencesInArg = arg => {
 	if (arg && arg.examples) {
 		for (const example of arg.examples) {
@@ -36,6 +37,7 @@ const keyOperations = (item, key) => {
 		default:
 			break
 	}
+
 	return largetype
 }
 
@@ -80,6 +82,7 @@ module.exports = class Render {
 				}
 			})
 		}
+
 		this.getProperties = () => item
 	}
 }

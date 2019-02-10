@@ -39,6 +39,7 @@ const run = () => {
 		} : {}
 		items.push(item.getProperties())
 	}
+
 	const itemsResultArr = alfy
 		.matches(alfy.input, items, 'title')
 		.map(x => ({
@@ -59,6 +60,7 @@ const run = () => {
 			arg: alfy.input
 		}])
 	}
+
 	alfy.config.set('nameOfSets', setsName)
 }
 

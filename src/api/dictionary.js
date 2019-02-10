@@ -130,8 +130,10 @@ const runDictionary = () => {
 					items = missingWordsResult[0]
 				}
 			}
+
 			alfy.output(items.length > 0 ? items[items.length - 2] && items[items.length - 2].name === 'main base form' ? arraymove(items, items.length - 2, 0) : items : [{title: 'Word not found'}])
 		}
+
 		runParseData(parseData)
 	} catch (error) {
 		throw new WorkflowError(error.stack)

@@ -27,6 +27,7 @@ module.exports = () => {
 			}
 		}
 	}
+
 	const userAPI = {
 		login: doLogin
 	}
