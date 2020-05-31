@@ -3077,6 +3077,8 @@ custome translate</string>
 			<integer>1100</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string>1.4.0</string>
 	<key>webaddress</key>
