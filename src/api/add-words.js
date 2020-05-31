@@ -4,20 +4,15 @@ const alfy = require('alfy')
 const rp = require('request-promise')
 
 const WorkflowError = require('../utils/error')
+const api = require('../utils/api')
 
 const search = JSON.parse(process.env.search)
 
 const runCreateSet = async input => {
-	const options = {
-		uri: `http://lingualeo.com/ru/userdict3/createWordSet?wordSet[name]=${input}`,
-		headers: {
-			Cookie: alfy.config.get('Cookie')
-		},
-		json: true // Automatically parses the JSON string in the response
-	}
+	const options = api.optionsSetWordSets(null, 'add set', input)
 	const result = await rp(options)
 		.then(data => {
-			return data.result.id
+			return data.data[0].id
 		}).catch(error => {
 			throw new WorkflowError(error.stack)
 		})
@@ -25,44 +20,29 @@ const runCreateSet = async input => {
 }
 
 const groupID = async () => {
-	if (/[a-zA-Z]/.test(alfy.input) && alfy.input !== 'dictionary') {
+	if (/[a-zA-Zа-яА-Я]/.test(alfy.input) && alfy.input !== 'dictionary') {
 		const id = await runCreateSet(alfy.input)
 		return id
 	}
 
-	return alfy.input
+	return process.env.currentSetId
 }
 
 const addWords = async () => {
-	const options = {
-		method: 'POST',
-		uri: 'https://lingualeo.com/userdict3/addWord',
-		headers:
-		{
-			Cookie: alfy.config.get('Cookie'),
-			'Cache-Control': 'no-cache',
-			'X-Requested-With': 'XMLHttpRequest',
-			'Content-Type': 'application/x-www-form-urlencoded'
-		},
-		form: {
-			word_id: search.word_id,
-			speech_part_id: 0,
-			groupId: await groupID(),
-			translate_id: search.translate_id,
-			translate_value: search.translate_value,
-			user_word_value: search.user_word_value
-		}
-	}
+	const groupIDresult = await groupID()
+	const options = await api.optionsSetWords(groupIDresult, 'add')
 	await rp(options)
 		.then(data => {
-			const result = JSON.parse(data)
-			if (result.error_msg === '') {
+			const result = data
+			if (result.status === 'ok') {
 				process.stdout.write(
 					JSON.stringify({
 						alfredworkflow: {
 							variables: {
-								text_notify_title: result.xp_points_added ? `${search.user_word_value}` : `Added: "${JSON.parse(process.env.search).user_word_value}" (to ${process.env.currentSetName})`,
-								text_notify_subtitle: result.xp_points_added ? `${search.translate_value}\n[${process.env.currentSetName}] \n🦁 ${result.hungry}%  |  XP: ${result.xp_points_daily} / ${result.xp_points_daily_norm} | ${result.xp_points_remaining} | 📈: ${result.xp_level}` : result.userdict3.related_words ? `${result.userdict3.related_words[0].translate_value}` : `${result.userdict3.user_translates.map(x => x.translate_value).join(', ')}`,
+								text_notify_title: result.xp_points_added ?
+									`${search.user_word_value}` :
+									`Added: "${JSON.parse(process.env.search).user_word_value}" (to ${process.env.currentSetName})`,
+								text_notify_subtitle: `${search.translate_value}`,
 								error: false
 							}
 						}
@@ -74,7 +54,7 @@ const addWords = async () => {
 						alfredworkflow: {
 							variables: {
 								error: true,
-								error_msg: result.error_msg
+								error_msg: result.status
 							}
 						}
 					})

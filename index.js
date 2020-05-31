@@ -10,18 +10,18 @@ const run = () => {
 	const data = require('./data/sets-of-dictionary.json')
 	const userInfo = alfy.config.get('userInfo')
 
-	alfy.input = alfy.input.replace(/.*?\u2023[\s]/gm, '')
+	alfy.input = alfy.input.replace(/.*?\u2023\s/gm, '')
 
-	const setsName = data.result.map(x => ({
+	const setsName = data.data[0].items.map(x => ({
 		setNumber: x.id,
 		setName: x.name
 	}))
 	const items = []
-	for (const set of data.result) {
+	for (const set of data.data[0].items) {
 		const item = new Render('List of dictionaries',
 			'title', 'subtitle', 'arg', 'variables', 'mods')
 		item.title = set.name
-		item.subtitle = `🅰 words: ${set.countWords}${set.id === 'dictionary' ? `  ${userInfo}` : ''}`
+		item.subtitle = `🅰 words: ${set.countWords}${set.id === 1 ? `  ${userInfo}` : ''}`
 		item.arg = set.id
 		item.variables = {
 			currentSetName: set.name,
@@ -40,7 +40,7 @@ const run = () => {
 		items.push(item.getProperties())
 	}
 
-	const itemsResultArr = alfy
+	const itemsResultArray = alfy
 		.matches(alfy.input, items, 'title')
 		.map(x => ({
 			title: x.title,
@@ -52,7 +52,7 @@ const run = () => {
 			mods: x.mods
 		}))
 	if (items.length > 0) {
-		alfy.output(itemsResultArr.length > 0 ? itemsResultArr : [{
+		alfy.output(itemsResultArray.length > 0 ? itemsResultArray : [{
 			title: `add to: "${alfy.input}" set`,
 			variables: {
 				currentSetName: alfy.input
@@ -66,7 +66,7 @@ const run = () => {
 
 const waitMessage = [{
 	title: 'The config of your account is not dowload yet',
-	subtitle: 'type \'lleo-dic\' or press ↵ to login...',
+	subtitle: 'type ’lleo-dic’ or press ↵ to login…',
 	icon: {path: alfy.icon.info}
 }]
 if (/^!.*/.test(alfy.input)) {

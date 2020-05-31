@@ -4,21 +4,23 @@ const jsonfile = require('jsonfile')
 const rp = require('request-promise')
 
 const WorkflowError = require('../../utils/error')
+const api = require('../../utils/api')
 const user = require('./user-info')
 
 const username = alfy.config.get('login')
 const password = alfy.config.get('password')
 
+const options1 = (wordSetId, category) => {
+	return api.optionsDataGetWords(wordSetId, category)
+}
+
+const options2 = () => {
+	return api.optionsDataGetWordSet()
+}
+
 const updateListOfSetName = async () => {
 	const setsOfDictionary = './data/sets-of-dictionary.json'
-	const options = {
-		uri: 'https://lingualeo.com/ru/userdict3/getWordSets',
-		headers: {
-			Cookie: alfy.config.get('Cookie')
-		},
-		json: true
-	}
-	await rp(options)
+	await rp(options2())
 		.then(data => {
 			jsonfile.writeFile(setsOfDictionary, data, {
 				spaces: 2
@@ -27,7 +29,7 @@ const updateListOfSetName = async () => {
 					console.error(err)
 				}
 			})
-			const setsName = data.result.map(x => ({
+			const setsName = data.data[0].items.map(x => ({
 				setNumber: x.id,
 				setName: x.name
 			}))
@@ -38,13 +40,13 @@ const updateListOfSetName = async () => {
 		})
 }
 
-const concatArrayInDublicateObj = (myArr, prop) => {
-	return myArr.filter((obj, pos, arr) => {
-		if (arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) !== pos) {
-			arr[pos - 1].words = [...arr[pos - 1].words, ...obj.words]
+const concatArrayInDublicateObject = (myArray, prop) => {
+	return myArray.filter((object, pos, array) => {
+		if (array.map(mapObject => mapObject[prop]).indexOf(object[prop]) !== pos) {
+			array[pos - 1].words = [...array[pos - 1].words, ...object.words]
 		}
 
-		return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos
+		return array.map(mapObject => mapObject[prop]).indexOf(object[prop]) === pos
 	})
 }
 
@@ -60,8 +62,8 @@ const getData = (data, countPage, setNumber, type) => {
 				console.error(err)
 			}
 		})
-	} else if (data.userdict3 && data.userdict3.length > 0 && countPage > 1) {
-		parseData.userdict3 = concatArrayInDublicateObj([...parseData.userdict3, ...data.userdict3], 'name')
+	} else if (data.userdict3 && parseData.userdict3 && data.userdict3.length > 0 && countPage > 1) {
+		parseData.userdict3 = concatArrayInDublicateObject([...parseData.userdict3, ...data.userdict3], 'name')
 		jsonfile.writeFile(`./data/${setNumber}-${type.name}.json`, parseData, {
 			spaces: 2
 		}, err => {
@@ -84,27 +86,22 @@ const runApi = async () => {
 	for (const dic of alfy.config.get('nameOfSets')) {
 		const setNumber = dic.setNumber.toString()
 		const typeOfItems = [
-			{name: 'allTypes', index: '0'},
-			{name: 'Words', index: '1'},
-			{name: 'Phrases', index: '2'},
-			{name: 'Sentences', index: '3'}
+			{name: 'allTypes', index: ''},
+			{name: 'Words', index: 'word'},
+			{name: 'Phrases', index: 'phrase'},
+			{name: 'Sentences', index: 'sentence'}
 		]
 		for (const type of typeOfItems) {
 			for (let countPage = 1; ; countPage++) {
-				const options = {
-					uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type.index}&filter=all&page=${countPage}&groupId=${dic.setNumber}`,
-					headers: {
-						Cookie: alfy.config.get('Cookie')
-					},
-					json: true // Automatically parses the JSON string in the response
-				}
 				/* eslint-disable no-await-in-loop */
-				await rp(options)
+				await rp(options1(setNumber, type.index))
 					.then(data => {
 						getData(data, countPage, setNumber, type)
 					})
 					.catch(error => {
-						throw new WorkflowError(error.stack)
+						if (error.message !== 'Error: socket hang up') {
+							throw new WorkflowError(error.stack)
+						}
 					})
 				/* eslint-enable no-await-in-loop */
 				if (!wordExist) {

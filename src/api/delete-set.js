@@ -1,35 +1,19 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
 'use strict'
-const alfy = require('alfy')
 const rp = require('request-promise')
+const api = require('../utils/api')
 
 const {groupName, groupId} = process.env
 const deleteWordSet = async () => {
-	const options = {
-		method: 'POST',
-		uri: 'https://lingualeo.com/userdict3/deleteWordSet',
-		headers:
-		{
-			Cookie: alfy.config.get('Cookie'),
-			'Cache-Control': 'no-cache',
-			'X-Requested-With': 'XMLHttpRequest',
-			'Content-Type': 'application/x-www-form-urlencoded'
-		},
-		form: {
-			word_set_id: groupId,
-			is_complete_delete: alfy.input
-		}
-	}
-	await rp(options)
+	await rp(api.optionsSetWordSets(groupId, process.argv[2]))
 		.then(data => {
-			const result = JSON.parse(data)
-			if (result.error_msg === '') {
+			const result = data
+			if (result.status === 'ok') {
 				process.stdout.write(
 					JSON.stringify({
 						alfredworkflow: {
 							variables: {
 								text_notify_title: `"${groupName}" Set was deleted`,
-								text_notify_subtitle: `${result.count_deleted_words} words were deleted\n${result.count_deleted_learned_words} lerned words were deleted`,
 								error: false
 							}
 						}

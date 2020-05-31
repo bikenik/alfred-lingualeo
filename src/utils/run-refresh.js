@@ -8,7 +8,7 @@ module.exports = async () => {
 
 	if (alfy.cache.get('start-PID') === process.pid) { // Prevent for 30 seconds
 		await runApplescript(`
-		tell application "Alfred 3"
+		tell application id "com.runningwithcrayons.Alfred"
 			run trigger ¬
 				"lingua-leo-refresh" in workflow ¬
 				"org.bikenik.alfred-lingualeo"

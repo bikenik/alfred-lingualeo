@@ -3,17 +3,18 @@
 const alfy = require('alfy')
 const rp = require('request-promise')
 
-const {nameOfSetByNumber, wordProgress} = require('../utils/api')
+const api = require('../utils/api')
+const {nameOfSetByNumber, wordProgress} = require('../utils')
 const Render = require('../utils/engine')
 
 module.exports.datesForFilter = currentData => {
 	const item = new Render('sort by date to Alfred',
 		'title', 'subtitle', 'arg', 'variables')
-	item.title = currentData.name
-	item.subtitle = `words: ${currentData.count === '' ? '0' : currentData.count}`
-	item.arg = currentData.name
+	item.title = currentData.groupName
+	item.subtitle = `words: ${currentData.groupCount === '' ? '0' : currentData.groupCount}`
+	item.arg = currentData.groupName
 	item.variables = {
-		mode: currentData.name
+		mode: currentData.groupName
 	}
 	return [item.getProperties()]
 }
@@ -21,38 +22,33 @@ module.exports.datesForFilter = currentData => {
 module.exports.wordTypesForFilter = async groupId => {
 	const items = []
 	const typeOfItems = [
-		{name: 'Words', index: '1'},
-		{name: 'Phrases', index: '2'},
-		{name: 'Sentences', index: '3'}
+		{name: 'word', index: '1'},
+		{name: 'phrase', index: '2'},
+		{name: 'sentence', index: '3'}
 	]
 	for (const type of typeOfItems) {
 		let countOfWords
-		const options = {
-			uri: `http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=${type.index}&filter=all&page=1&groupId=${groupId}`,
-			headers: {
-				Cookie: alfy.config.get('Cookie')
-			},
-			json: true // Automatically parses the JSON string in the response
-		}
+		const options = api.optionsDataGetWords(groupId, type.name)
 		/* eslint-disable no-await-in-loop */
 		await rp(options)
 			.then(data => {
-				countOfWords = data.count_words ? data.count_words.toString() : ''
+				countOfWords = data.data.length > 0
 			})
 			.catch(error => {
 				console.log('MYERROR:', error)
 			})
 		/* eslint-enable no-await-in-loop */
 		const item = new Render('sort by type to Alfred',
-			'title', 'subtitle', 'variables')
-		item.title = type.name
-		item.subtitle = `words: ${countOfWords === '' ? '0' : countOfWords}`
-		item.variables = {
-			type: type.index,
-			typeName: type.name,
-			missing: false
+			'title', 'variables')
+		if (countOfWords) {
+			item.title = type.name
+			item.variables = {
+				type: type.index,
+				typeName: type.name,
+				missing: false
+			}
+			items.push(item.getProperties())
 		}
-		items.push(item.getProperties())
 	}
 
 	return items
@@ -60,34 +56,34 @@ module.exports.wordTypesForFilter = async groupId => {
 
 module.exports.filterWordsByDate = (data, currentData) => {
 	const items = []
-	for (const word of currentData.words) {
+	for (const word of data.words) {
 		const item = new Render('sorted with Alfred words',
 			'title', 'subtitle', 'arg', 'text', 'icon', 'quicklookurl', 'variables', 'mods')
-		item.title = `${word.word_value}`
-		item.subtitle = `${word.user_translates[0].translate_value}${data.group.id === 'dictionary' && word.groups ? `\t\t[${nameOfSetByNumber(word.groups).join(', ')}]` : ''}`
+		item.title = `${word.wordValue}`
+		item.subtitle = `${word.combinedTranslation}${data.groupName === 'dictionary' && word.groupName ? `\t\t[${nameOfSetByNumber(word.groupName).join(', ')}]` : ''}`
 		item.arg = currentData.data
 		item.text = {
-			copy: `${word.word_value}\n\n${word.user_translates[0].translate_value}`,
-			largetype: `${word.word_value}\n\n${word.user_translates[0].translate_value}`
+			copy: `${word.wordValue}\n\n${word.combinedTranslation}`,
+			largetype: `${word.wordValue}\n\n${word.combinedTranslation}`
 		}
-		item.icon = wordProgress(word.progress_percent, word.word_top)
-		item.quicklookurl = word.user_translates[0].picture_url === '' ? '' : `https:${word.user_translates[0].picture_url}`
+		item.icon = wordProgress(word.progress, word.word_top)
+		item.quicklookurl = word.picture === '' ? '' : word.picture
 		item.variables = {missing: false}
 		item.mods = {
 			alt: {
 				subtitle: '⏯ PLAY',
 				variables: {
-					audioFileName: word.word_id,
-					audioUrl: word.sound_url,
+					audioFileName: word.id,
+					audioUrl: word.pronunciation,
 					missing: false
 				}
 			},
 			fn: {
 				subtitle: '‼️ Delete this word ‼️',
 				arg: JSON.stringify({
-					word_id: word.word_id,
-					groupId: word.groupId ? word.groupId : 'dictionary',
-					word_value: word.word_value
+					word_id: word.id,
+					groupId: word.wordSets.length > 0 ? word.wordSets[0].id : 'dictionary',
+					word_value: word.wordValue
 				}),
 				icon: {
 					path: alfy.icon.delete

@@ -13,7 +13,7 @@
 		"node": ">=7.6"
 	},
 	"scripts": {
-		"test": "xo && ava",
+		"test": "xo",
 		"postinstall": "alfy-init",
 		"preuninstall": "alfy-cleanup"
 	},
@@ -30,18 +30,23 @@
 		"alfy"
 	],
 	"dependencies": {
-		"alfy": "^0.8.0",
-		"fs-extra": "^7.0.1",
-		"got": "^9.6.0",
-		"jsonfile": "^5.0.0",
+		"alfy": "^0.9.1",
+		"form-data": "^3.0.0",
+		"fs-extra": "^9.0.0",
+		"got": "^11.1.4",
+		"jsonfile": "^6.0.1",
 		"request": "^2.88.0",
-		"request-promise": "^4.2.2",
-		"run-applescript": "^3.2.0",
-		"stream-to-promise": "^2.2.0"
+		"request-promise": "^4.2.5",
+		"run-applescript": "^4.0.0",
+		"stream": "0.0.2",
+		"stream-to-promise": "^3.0.0",
+		"util": "^0.12.3"
 	},
 	"devDependencies": {
-		"ava": "^1.2.1",
-		"xo": "^0.24.0"
+		"ava": "^3.8.2",
+		"esm": "^3.2.25",
+		"webpack": "^4.43.0",
+		"xo": "^0.30.0"
 	},
 	"xo": {
 		"space": false,

@@ -68,7 +68,7 @@ typings/
 
 #other
 .DS_Store
-test
+tests
 data
 tmp
 

@@ -4,24 +4,26 @@ const got = require('got')
 const WorkflowError = require('../../utils/error')
 
 module.exports = () => {
-	let username
-	let password
 	const doLogin = async (user, pw) => {
-		username = user
-		password = pw
-		let response
+		let response1
+		user = '2bikenik@gmail.com'
+		pw = 'ajxCbiB2mPndE'
 		try {
-			response = await got(`https://lingualeo.com/api/login?email=${username}&password=${password}`)
-			alfy.config.set('Cookie', response.headers['set-cookie'])
-			const res = JSON.parse(response.body).user
-			const premiumUntil = new Date(res.premium_until)
-			const currentDate = new Date()
-			const oneDay = 24 * 60 * 60 * 1000
-			const leftDays = Math.round(Math.abs((premiumUntil.getTime() - currentDate.getTime()) / (oneDay)))
-			alfy.config.set('userInfo', `🦁 ${res.hungry_pct}%  📈 level: ${res.xp_level}  🥩 ${res.meatballs}  👑 left: ${leftDays} days`)
+			response1 = await got.get(`https://lingualeo.com/api/login?email=${user}&password=${pw}`)
+			const userInfo = JSON.parse(response1.body)
+			if (userInfo.user) {
+				const premiumUntil = new Date(userInfo.user.premium_until)
+				const currentDate = new Date()
+				const oneDay = 24 * 60 * 60 * 1000
+				const leftDays = Math.round(Math.abs((premiumUntil.getTime() - currentDate.getTime()) / (oneDay)))
+				alfy.config.set('Cookie', response1.headers['set-cookie'])
+				alfy.config.set('userInfo', `🦁 ${userInfo.user.hungry_pct}%  📈 level: ${userInfo.user.xp_level}  🥩 ${userInfo.user.meatballs}  👑 left: ${leftDays} days  💡🅰 ${userInfo.user.words_cnt - userInfo.user.words_known}`)
+			} else {
+				throw new Error(userInfo.error_msg)
+			}
 		} catch (error) {
-			if (response) {
-				console.log(JSON.parse(response.body).error_msg)
+			if (response1 === false) {
+				throw new WorkflowError(error.stack)
 			} else {
 				throw new WorkflowError(error.stack)
 			}

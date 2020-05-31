@@ -10,25 +10,12 @@ const {allWords, missingWords} = require('./words')
 const {wordTypesForFilter, filterWordsByDate, datesForFilter} = require('./filter')
 
 const {audioUrl, audioFileName} = process.env
-const currentSet = process.env.currentSetId ? process.env.currentSetId : alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets')[0] ? alfy.config.get('nameOfSets')[0].setNumber : ''
-const groupId = process.env.groupId ? process.env.groupId : 'dictionary'
+const currentSet = process.env.currentSetId ? process.env.currentSetId : (alfy.config.get('nameOfSets') && alfy.config.get('nameOfSets')[0] ? alfy.config.get('nameOfSets')[0].setNumber : '')
+const groupId = process.env.groupId ? process.env.groupId : '1'
 const type = process.env.type ? process.env.type : '0'
 const mode = process.argv[3]
 
 const typeOf = ['allTypes', 'Words', 'Phrases', 'Sentences']
-
-const checkForAlreadyAdded = (items, x) => {
-	return items.length > 0 && items
-		.filter(z => z.metaInfo.id
-			.filter(y => x.metaInfo && y === x.metaInfo.id).length > 0).length > 0
-}
-
-const arraymove = (arr, fromIndex, toIndex) => {
-	const element = arr[fromIndex]
-	arr.splice(fromIndex, 1)
-	arr.splice(toIndex, 0, element)
-	return arr
-}
 
 const itemsReduce = (items, missingWordsResult) => {
 	return [...items, ...alfy.matches('', missingWordsResult, 'title').map(x => ({
@@ -44,7 +31,7 @@ const itemsReduce = (items, missingWordsResult) => {
 			largetype: x.title
 		},
 		variables: {
-			missing: !checkForAlreadyAdded(items, x),
+			missing: x.metaInfo ? !x.metaInfo.is_user : null,
 			search: JSON.stringify({
 				translate_id: x.metaInfo ? x.metaInfo.id : '',
 				word_id: x.metaInfo ? x.metaInfo.word_id : '',
@@ -54,18 +41,18 @@ const itemsReduce = (items, missingWordsResult) => {
 			currentSearch: x.metaInfo ? x.metaInfo.user_word_value : '',
 			custom: x.name === 'your version'
 		},
-		icon: checkForAlreadyAdded(items, x) ? {
+		icon: x.metaInfo && x.metaInfo.is_user ? {
 			path: 'icons/word-exist.png'
 		} : x.icon
 	}))]
 }
 
 alfy.input = alfy.input.replace(/\n/gm, ' ')
-alfy.input = alfy.input.replace(/.*?\u2023[\s]/gm, '')
+alfy.input = alfy.input.replace(/.*?\u2023\s/gm, '')
 const bool = missingWordsResult => {
 	return {
 		missing: missingWordsResult && missingWordsResult[0].name === 'rus translation',
-		addNewWord: mode === 'allWords' && type === '0' && groupId === 'dictionary' && alfy.input !== ''
+		addNewWord: mode === 'allWords' && type === '0' && groupId === '1' && alfy.input !== ''
 	}
 }
 
@@ -76,6 +63,10 @@ const runDictionary = () => {
 		const runParseData = async parseData => {
 			switch (mode) {
 				case 'play':
+					console.log('audio', audioUrl)
+					console.log('filename', audioFileName)
+					console.log('pwd', '')
+
 					saveAudioFile(audioUrl, audioFileName)
 					break
 				case 'filter':
@@ -85,23 +76,25 @@ const runDictionary = () => {
 					break
 			}
 
-			for (const currentDate of parseData.userdict3) {
+			for (const currentDate of parseData.data) {
 				switch (mode) {
 					case 'allWords':
-						itemsResult.push(...allWords(parseData, currentDate))
+						itemsResult.push(...allWords(currentDate, currentDate.groupName))
 						break
 					case 'filter':
 						itemsResult.push(...datesForFilter(currentDate))
 						break
-					case currentDate.name:
-						itemsResult.push(...filterWordsByDate(parseData, currentDate))
+					case currentDate.groupName:
+						itemsResult.push(...filterWordsByDate(currentDate, currentDate.groupName))
 						break
 					default:
 						break
 				}
 			}
 
-			let items = alfy.inputMatches(itemsResult, 'title')
+			// ItemsResult = itemsResult.filter(x => x.title)
+			let items = []
+			items = alfy.inputMatches(itemsResult, 'title')
 				.map(x => ({
 					name: x.name,
 					title: x.title,
@@ -127,11 +120,13 @@ const runDictionary = () => {
 							valid: false
 						}] : itemsReduce(items, missingWordsResult)
 				} else {
-					items = missingWordsResult[0]
+					items = missingWordsResult
 				}
 			}
 
-			alfy.output(items.length > 0 ? items[items.length - 2] && items[items.length - 2].name === 'main base form' ? arraymove(items, items.length - 2, 0) : items : [{title: 'Word not found'}])
+			alfy.output(items.length > 0 ?
+				items :
+				[{title: 'Word not found'}])
 		}
 
 		runParseData(parseData)
@@ -155,6 +150,7 @@ if (/^!.*/.test(alfy.input)) {
 			icon: {path: 'icons/night_and_day.png'}
 		}
 	])
+// } else if (alfy.config.get('login') !== undefined) {
 } else if (alfy.config.get('login') === undefined) {
 	alfy.output([{
 		title: `Your login is: ${alfy.input}`,
@@ -165,6 +161,7 @@ if (/^!.*/.test(alfy.input)) {
 			settingMode: 'login'
 		}
 	}])
+// } else if (alfy.config.get('password') !== undefined) {
 } else if (alfy.config.get('password') === undefined) {
 	alfy.output([{
 		title: `Your password is: ${alfy.input}`,

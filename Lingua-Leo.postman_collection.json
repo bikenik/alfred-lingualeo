@@ -9,43 +9,12 @@
 			"name": "Translation",
 			"item": [
 				{
-					"name": "Translate by API",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://lingualeo.com/api/gettranslates?word=hello world",
-							"protocol": "https",
-							"host": [
-								"lingualeo",
-								"com"
-							],
-							"path": [
-								"api",
-								"gettranslates"
-							],
-							"query": [
-								{
-									"key": "word",
-									"value": "hello world"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Translate from Russian to English",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
 						"url": {
-							"raw": "https://lingualeo.com/translate.php?q=mi palabra&from=&source=es&target=en",
+							"raw": "https://lingualeo.com/translate.php?q=кошка&from=&source=ru&target=en",
 							"protocol": "https",
 							"host": [
 								"lingualeo",
@@ -57,7 +26,7 @@
 							"query": [
 								{
 									"key": "q",
-									"value": "mi palabra"
+									"value": "кошка"
 								},
 								{
 									"key": "from",
@@ -65,7 +34,7 @@
 								},
 								{
 									"key": "source",
-									"value": "es"
+									"value": "ru"
 								},
 								{
 									"key": "target",
@@ -81,7 +50,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
 						"url": {
 							"raw": "https://lingualeo.com/userdict3/getTranslations?word_value=aloft&groupId=&_=",
 							"protocol": "https",
@@ -114,205 +82,271 @@
 			]
 		},
 		{
-			"name": "Show words",
+			"name": "NEW sets",
 			"item": [
 				{
-					"name": "Words Sorted by Filter",
+					"name": "Add Word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "faf58051-c834-46e6-a9fb-d1dff4ee71f2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded"
+								"value": "application/json"
 							},
 							{
-								"key": "X-Requested-With",
-								"value": "XMLHttpRequest"
+								"key": "Host",
+								"value": "api.lingualeo.com"
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "sortBy",
-									"value": "date",
-									"type": "text"
-								},
-								{
-									"key": "wordType",
-									"value": "2",
-									"description": "all types-(0), words-(1), phase-(2),  sentence-(3)",
-									"type": "text"
-								},
-								{
-									"key": "filter",
-									"value": "all",
-									"type": "text"
-								},
-								{
-									"key": "page",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "groupId",
-									"value": "dictionary",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"op\": \"actionWithWords {action: add}\",\n    \"data\": [\n        {\n            \"action\": \"add\",\n            \"mode\": \"0\",\n            \"wordIds\": [\n                40892\n            ],\n            \"valueList\": {\n                \"wordSetId\": 1,\n                \"translation\": {\n                    \"id\": 2,\n                    \"main\": 1,\n                    \"selected\": 1\n                }\n            }\n        }\n    ],\n    \"userData\": {\n        \"nativeLanguage\": \"lang_id_src\"\n    },\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}"
 						},
 						"url": {
-							"raw": "https://lingualeo.com/userdict/json",
+							"raw": "https://api.lingualeo.com/SetWords",
 							"protocol": "https",
 							"host": [
+								"api",
 								"lingualeo",
 								"com"
 							],
 							"path": [
-								"userdict",
-								"json"
+								"SetWords"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				},
+				{
+					"name": "get dashboard Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.0\",\n    \"op\": \"loadAllData\",\n    \"userData\": {\n        \"nativeLanguage\": \"lang_id_src\",\n        \"premium\": \"premium\"\n    },\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/getDashboardData",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
+							],
+							"path": [
+								"getDashboardData"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Words Sorted by Filter",
+					"name": "get words",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"api_call\": \"GetWords\",\n    \"attrList\": {\n        \"id\": \"id\",\n        \"wordValue\": \"wd\",\n        \"origin\": \"wo\",\n        \"wordType\": \"wt\",\n        \"translations\": \"trs\",\n        \"wordSets\": \"ws\",\n        \"created\": \"cd\",\n        \"learningStatus\": \"ls\",\n        \"progress\": \"pi\",\n        \"transcription\": \"scr\",\n        \"pronunciation\": \"pron\",\n        \"relatedWords\": \"rw\",\n        \"association\": \"as\",\n        \"trainings\": \"trainings\",\n        \"listWordSets\": \"listWordSets\",\n        \"combinedTranslation\": \"trc\",\n        \"picture\": \"pic\",\n        \"speechPartId\": \"pid\",\n        \"wordLemmaId\": \"lid\",\n        \"wordLemmaValue\": \"lwd\"\n    },\n    \"category\": \"\",\n    \"dateGroup\": \"start\",\n    \"mode\": \"basic\",\n    \"perPage\": 3000,\n    \"status\": \"\",\n    \"wordSetId\": 1,\n    \"offset\": null,\n    \"search\": \"\",\n    \"training\": null,\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    },\n    \"token\": \"a051790015054348303be6c7f3ea0f488c8c35ddf57207acaa1c0de185620606fd583f3f4796afbb\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
 						"url": {
-							"raw": "http://lingualeo.com/ru/userdict/json?sortBy=date&wordType=0&filter=all&page=1&groupId=dictionary",
-							"protocol": "http",
+							"raw": "https://api.lingualeo.com/GetWords",
+							"protocol": "https",
 							"host": [
+								"api",
 								"lingualeo",
 								"com"
 							],
 							"path": [
-								"ru",
-								"userdict",
-								"json"
+								"GetWords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Translates",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"op\": \"getTranslates\",\n    \"text\": \"table\",\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/getTranslates",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
 							],
-							"query": [
-								{
-									"key": "sortBy",
-									"value": "date"
-								},
-								{
-									"key": "wordType",
-									"value": "0",
-									"description": "all types-(0), words-(1), phase-(2),  sentence-(3)"
-								},
-								{
-									"key": "filter",
-									"value": "all",
-									"description": "no_translate - (new); learning - (added for learning); learned"
-								},
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "groupId",
-									"value": "dictionary"
+							"path": [
+								"getTranslates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDashboardData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [],
+							"options": {
+								"raw": {
+									"language": "text"
 								}
+							}
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/getDashboardData",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
+							],
+							"path": [
+								"getDashboardData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Translate by API",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"text\": \"рулетка\",\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/getTranslates",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
+							],
+							"path": [
+								"getTranslates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete word",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"op\": \"groupActionWithWords {action: delete}\",\n    \"data\": [\n        {\n            \"action\": \"delete\",\n            \"mode\": \"delete\",\n            \"wordSetId\": 1,\n            \"wordIds\": [\n                40892\n            ],\n            \"dateGroups\": null,\n            \"filter\": null,\n            \"chunk\": null,\n            \"valueList\": {\n                \"globalSetId\": 1\n            }\n        }\n    ],\n    \"userData\": {\n        \"nativeLanguage\": \"lang_id_src\"\n    },\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/SetWords",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
+							],
+							"path": [
+								"SetWords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserProfile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiVersion\": \"1.0.1\",\n    \"attrList\": {\n        \"avatar\": \"avatar\",\n        \"firstName\": \"fn\",\n        \"lastName\": \"sn\",\n        \"nickName\": \"nn\",\n        \"country\": \"cc\",\n        \"address\": \"addr\",\n        \"dateOfBirth\": \"db\",\n        \"sex\": \"sex\",\n        \"level\": \"level\",\n        \"levelName\": \"levelName\",\n        \"email\": \"em\",\n        \"payments\": \"payments\",\n        \"nativeLang\": \"nativeLang\",\n        \"targetLang\": \"targetLang\",\n        \"interfaceLang\": \"lang_interface\",\n        \"timezone\": \"timezone\",\n        \"voiceSex\": \"vs\",\n        \"subscriptions\": \"subscr\",\n        \"meatBalls\": \"mb\",\n        \"userTitle\": \"userTitle\",\n        \"userGameLevel\": \"userGameLevel\",\n        \"hungry\": \"hungry\",\n        \"xp\": \"xp\",\n        \"xpLevel\": \"xpLevel\",\n        \"xpRemaining\": \"xpRemaining\",\n        \"trainingAutoplay\": \"trainingAutoplay\"\n    },\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.lingualeo.com/GetUserProfile",
+							"protocol": "https",
+							"host": [
+								"api",
+								"lingualeo",
+								"com"
+							],
+							"path": [
+								"GetUserProfile"
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Add Word",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "faf58051-c834-46e6-a9fb-d1dff4ee71f2",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "word_id",
-							"value": "1466648",
-							"type": "text"
-						},
-						{
-							"key": "speech_part_id",
-							"value": "0",
-							"type": "text"
-						},
-						{
-							"key": "groupId",
-							"value": "dictionary",
-							"type": "text"
-						},
-						{
-							"key": "translate_id",
-							"value": "16622662",
-							"type": "text"
-						},
-						{
-							"key": "translate_value",
-							"value": "Привет Мир!",
-							"type": "text"
-						},
-						{
-							"key": "user_word_value",
-							"value": "hello world",
-							"type": "text"
-						},
-						{
-							"key": "from_syntrans_id",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "to_syntrans_id",
-							"value": "",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://lingualeo.com/userdict3/addWord",
-					"protocol": "https",
-					"host": [
-						"lingualeo",
-						"com"
-					],
-					"path": [
-						"userdict3",
-						"addWord"
-					]
-				},
-				"description": "test"
-			},
-			"response": []
 		},
 		{
 			"name": "Delete Word",
@@ -453,7 +487,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "https://lingualeo.com/api/login?email={{email}}&password={{password}}",
 					"protocol": "https",
@@ -484,7 +517,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "https://lingualeo.com/ru/userdict3/getWordSets",
 					"protocol": "https",
@@ -504,26 +536,27 @@
 		{
 			"name": "Create Set",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apiVersion\": \"1.0.0\",\n    \"op\": \"createWordSet\",\n    \"data\": [\n        {\n            \"action\": \"add\",\n            \"valueList\": {\n                \"name\": \"my new set\",\n                \"picture\": null\n            }\n        }\n    ],\n    \"ctx\": {\n        \"config\": {\n            \"isCheckData\": true,\n            \"isLogging\": true\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://lingualeo.com/ru/userdict3/createWordSet?wordSet[name]=title",
-					"protocol": "http",
+					"raw": "https://api.lingualeo.com/SetWordSets",
+					"protocol": "https",
 					"host": [
+						"api",
 						"lingualeo",
 						"com"
 					],
 					"path": [
-						"ru",
-						"userdict3",
-						"createWordSet"
-					],
-					"query": [
-						{
-							"key": "wordSet[name]",
-							"value": "title"
-						}
+						"SetWordSets"
 					]
 				}
 			},
@@ -534,7 +567,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "https://lingualeo.com/api/addword?word=aloft&tword=ввысь&context=this is my context",
 					"protocol": "https",
@@ -569,7 +601,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "https://lingualeo.com/api/user/{{userId}}/notifications/unread",
 					"protocol": "https",
@@ -593,7 +624,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "https://lingualeo.com/api/getUntrainedWordsCount",
 					"protocol": "https",
@@ -604,91 +634,6 @@
 					"path": [
 						"api",
 						"getUntrainedWordsCount"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Check words exist",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "https://lingualeo.com/userdict3/getWord?word_value=arrivals&groupId=dictionary&_=",
-					"protocol": "https",
-					"host": [
-						"lingualeo",
-						"com"
-					],
-					"path": [
-						"userdict3",
-						"getWord"
-					],
-					"query": [
-						{
-							"key": "word_value",
-							"value": "arrivals"
-						},
-						{
-							"key": "groupId",
-							"value": "dictionary"
-						},
-						{
-							"key": "_",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Set progress training",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "all",
-							"value": "0",
-							"type": "text"
-						},
-						{
-							"key": "wordIds",
-							"value": "61696",
-							"type": "text"
-						},
-						{
-							"key": "learned",
-							"value": "1",
-							"description": "0 - reset progress word; 1 - activate progress word",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://lingualeo.com/training/setalltraining",
-					"protocol": "https",
-					"host": [
-						"lingualeo",
-						"com"
-					],
-					"path": [
-						"training",
-						"setalltraining"
 					]
 				}
 			},

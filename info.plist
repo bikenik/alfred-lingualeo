@@ -34,6 +34,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>07470B44-7C41-40D5-8592-04598FE8C7A9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9E5CABFC-60D7-45D3-893A-FDAFEC62A8FA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>17498D45-B92B-444C-AC6D-A6A3E0B6C815</key>
 		<array>
 			<dict>
@@ -52,6 +65,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>7A5D8971-EAA8-456F-A45C-67666B9DA480</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>25DA33C0-DC44-4962-B8D0-438F9AD88C79</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FD5BBD9B-3981-4566-9186-6975A90D7A09</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -583,7 +609,40 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>F77F9538-A59E-4B9A-AA8B-D8DD796F2E18</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>4036D542-DC8D-4985-8434-8F3205FC80CA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9E5CABFC-60D7-45D3-893A-FDAFEC62A8FA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>79A2BB9C-98D5-4168-83E4-94598CC79072</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3917C543-6347-45E1-BFF0-87ECC2FCE205</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -636,6 +695,16 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>FB62DF79-66D0-4A32-A783-DBC415C56E04</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F77F9538-A59E-4B9A-AA8B-D8DD796F2E18</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -855,7 +924,17 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</string>
+				<string>2E10A850-2D74-4216-BE64-245B77E62231</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1551A924-3AAB-4555-A336-8BE255D27E02</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -924,7 +1003,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"title":"\"{var:groupName}\" will be delete and all wards","arg":"1"},{"title":"\"{var:groupName}\" will be delete but words will be keep","arg":"0"}]</string>
+				<string>[{"title":"\"{var:groupName}\" will be delete and all wards","arg":"delete all words"},{"title":"\"{var:groupName}\" will be delete but words will be keep","arg":"delete only set"}]</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -1060,7 +1139,10 @@
 				<key>json</key>
 				<string>{
   "alfredworkflow" : {
-    "arg" : "{query}"
+    "arg" : "",
+    "variables" : {
+      "search" : "{query}"
+    }
   }
 }</string>
 			</dict>
@@ -1078,6 +1160,8 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1114,7 +1198,7 @@
 			<key>uid</key>
 			<string>95E42087-4FA8-48C8-9D62-73A70F6EDD04</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1136,6 +1220,8 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1172,7 +1258,7 @@
 			<key>uid</key>
 			<string>7A5D8971-EAA8-456F-A45C-67666B9DA480</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1281,10 +1367,33 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>see current.log in WF data folder</string>
+				<key>title</key>
+				<string>⛔ Something went wrong</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>79A2BB9C-98D5-4168-83E4-94598CC79072</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1323,7 +1432,7 @@
 			<key>uid</key>
 			<string>C805E018-8081-4664-AFD2-CEE4B6C04265</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1361,6 +1470,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1397,7 +1508,7 @@ fi</string>
 			<key>uid</key>
 			<string>465D11EF-AD7E-4B50-867D-ADA8702248DF</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1536,6 +1647,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>2</integer>
+				<key>matchstring</key>
+				<string>Error</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>9E5CABFC-60D7-45D3-893A-FDAFEC62A8FA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -1563,6 +1693,35 @@ fi</string>
 			<string>B84975E0-19AA-4D5B-BE67-9A293DEE1EC3</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>adduuid</key>
+				<false/>
+				<key>allowemptyfiles</key>
+				<true/>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>current.log</string>
+				<key>filetext</key>
+				<string>{datetime:medium}
+
+{query}
+
+---------------------------------------</string>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.writefile</string>
+			<key>uid</key>
+			<string>3917C543-6347-45E1-BFF0-87ECC2FCE205</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1645,6 +1804,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1681,7 +1842,7 @@ fi</string>
 			<key>uid</key>
 			<string>B4E1ED24-14C4-44D1-8884-9A4B01739956</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1718,6 +1879,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1764,7 +1927,7 @@ fi</string>
 			<key>uid</key>
 			<string>2A0DB276-C186-448B-BB6B-92AD4E7AB3CB</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1911,6 +2074,27 @@ fi</string>
 				<key>removeextension</key>
 				<false/>
 				<key>text</key>
+				<string>see current.log in WF data folder</string>
+				<key>title</key>
+				<string>⛔ Something went wrong</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2E10A850-2D74-4216-BE64-245B77E62231</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
 				<string></string>
 				<key>title</key>
 				<string>Config file has been reset</string>
@@ -1921,23 +2105,6 @@ fi</string>
 			<string>AB7A0886-F415-4FAB-863D-96664B7571D0</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>largetypetext</key>
-				<string>! Something went wrong with "alfred-lingualeo"
-
-ERROR MESSAGE IS: {query}
-
-* To reset your login &amp; password type '!' in query search</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1984,6 +2151,8 @@ ERROR MESSAGE IS: {query}
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -2020,7 +2189,7 @@ ERROR MESSAGE IS: {query}
 			<key>uid</key>
 			<string>3A658153-88E4-42CC-AAEE-67901C3D73EA</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2097,6 +2266,64 @@ ERROR MESSAGE IS: {query}
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>A9E66CE4-909B-47CE-8E47-449BED1CE8D2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>adduuid</key>
+				<false/>
+				<key>allowemptyfiles</key>
+				<true/>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>current.log</string>
+				<key>filetext</key>
+				<string>{datetime:medium}
+
+{query}
+
+---------------------------------------</string>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.writefile</string>
+			<key>uid</key>
+			<string>1551A924-3AAB-4555-A336-8BE255D27E02</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>adduuid</key>
+				<false/>
+				<key>allowemptyfiles</key>
+				<true/>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>current.log</string>
+				<key>filetext</key>
+				<string>{datetime:medium}
+
+⛔ {var:error_msg}
+
+---------------------------</string>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.writefile</string>
+			<key>uid</key>
+			<string>F77F9538-A59E-4B9A-AA8B-D8DD796F2E18</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2214,6 +2441,35 @@ ERROR MESSAGE IS: {query}
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>adduuid</key>
+				<false/>
+				<key>allowemptyfiles</key>
+				<true/>
+				<key>createintermediatefolders</key>
+				<false/>
+				<key>filename</key>
+				<string>current.log</string>
+				<key>filetext</key>
+				<string>{datetime:medium}
+
+⛔ {query}
+
+---------------------------</string>
+				<key>relativepathmode</key>
+				<integer>0</integer>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.writefile</string>
+			<key>uid</key>
+			<string>FD5BBD9B-3981-4566-9186-6975A90D7A09</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -2287,6 +2543,13 @@ AUDIO PLAY</string>
 			<key>ypos</key>
 			<integer>420</integer>
 		</dict>
+		<key>1551A924-3AAB-4555-A336-8BE255D27E02</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>860</integer>
+		</dict>
 		<key>17498D45-B92B-444C-AC6D-A6A3E0B6C815</key>
 		<dict>
 			<key>colorindex</key>
@@ -2349,6 +2612,13 @@ WORDS</string>
 			<key>ypos</key>
 			<integer>1130</integer>
 		</dict>
+		<key>2E10A850-2D74-4216-BE64-245B77E62231</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>745</integer>
+		</dict>
 		<key>3166DD64-65FD-42B4-BE50-1D0AC82D3CAE</key>
 		<dict>
 			<key>colorindex</key>
@@ -2369,6 +2639,13 @@ DELETE SET</string>
 			<integer>2090</integer>
 			<key>ypos</key>
 			<integer>10</integer>
+		</dict>
+		<key>3917C543-6347-45E1-BFF0-87ECC2FCE205</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1980</integer>
+			<key>ypos</key>
+			<integer>505</integer>
 		</dict>
 		<key>3A658153-88E4-42CC-AAEE-67901C3D73EA</key>
 		<dict>
@@ -2502,6 +2779,13 @@ DELETE WORD</string>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
+		<key>79A2BB9C-98D5-4168-83E4-94598CC79072</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1980</integer>
+			<key>ypos</key>
+			<integer>390</integer>
+		</dict>
 		<key>7A5D8971-EAA8-456F-A45C-67666B9DA480</key>
 		<dict>
 			<key>note</key>
@@ -2592,6 +2876,13 @@ FILTER</string>
 			<integer>940</integer>
 			<key>ypos</key>
 			<integer>770</integer>
+		</dict>
+		<key>9E5CABFC-60D7-45D3-893A-FDAFEC62A8FA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1850</integer>
+			<key>ypos</key>
+			<integer>475</integer>
 		</dict>
 		<key>A1F2D425-56BC-4C4C-B320-4FB24E2004B6</key>
 		<dict>
@@ -2755,12 +3046,12 @@ custome translate</string>
 			<key>ypos</key>
 			<integer>990</integer>
 		</dict>
-		<key>F3A8A6F7-FBAE-4CD5-9308-8D51484DDA02</key>
+		<key>F77F9538-A59E-4B9A-AA8B-D8DD796F2E18</key>
 		<dict>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>2520</integer>
 			<key>ypos</key>
-			<integer>770</integer>
+			<integer>875</integer>
 		</dict>
 		<key>F8CEFF66-722B-4914-B10C-3AFF09DC50CB</key>
 		<dict>
@@ -2778,9 +3069,16 @@ custome translate</string>
 			<key>ypos</key>
 			<integer>820</integer>
 		</dict>
+		<key>FD5BBD9B-3981-4566-9186-6975A90D7A09</key>
+		<dict>
+			<key>xpos</key>
+			<integer>2520</integer>
+			<key>ypos</key>
+			<integer>1100</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.3.1</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/bikenik/alfred-lingualeo#readme</string>
 </dict>
