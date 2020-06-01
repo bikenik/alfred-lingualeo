@@ -6,8 +6,6 @@ const WorkflowError = require('../../utils/error')
 module.exports = () => {
 	const doLogin = async (user, pw) => {
 		let response1
-		user = '2bikenik@gmail.com'
-		pw = 'ajxCbiB2mPndE'
 		try {
 			response1 = await got.get(`https://lingualeo.com/api/login?email=${user}&password=${pw}`)
 			const userInfo = JSON.parse(response1.body)
