@@ -1,5 +1,6 @@
 /* eslint new-cap: ["error", { "capIsNew": false }] */
 /* eslint import/no-unresolved: [2, { commonjs: false, amd: false }] */
+/* eslint-disable node/prefer-promises/fs */
 'use strict'
 const fs = require('fs')
 const alfy = require('alfy')

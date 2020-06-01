@@ -12,7 +12,7 @@
 $ npm install --global alfred-lingualeo
 ```
 
-*Requires: [Node.js](https://nodejs.org) 7.6+, Alfred [Powerpack](https://www.alfredapp.com/powerpack/)., account [LinguaLeo](https://lingualeo.com)*
+*Requires: [Node.js](https://nodejs.org) 12.6+, Alfred [Powerpack](https://www.alfredapp.com/powerpack/)., account [LinguaLeo](https://lingualeo.com)*
 
 ## Preview / Usage
 

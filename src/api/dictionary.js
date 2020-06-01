@@ -1,5 +1,6 @@
 /* eslint camelcase: ["error", {properties: "never"}] */
 /* eslint new-cap: ["error", { "capIsNew": false }] */
+/* eslint-disable node/prefer-promises/fs */
 'use strict'
 const fs = require('fs')
 const alfy = require('alfy')
