@@ -45,7 +45,7 @@
 	"devDependencies": {
 		"ava": "^3.8.2",
 		"esm": "^3.2.25",
-		"webpack": "^4.43.0",
+		"webpack": "^5.75.0",
 		"xo": "^0.30.0"
 	},
 	"xo": {
