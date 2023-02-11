@@ -30,10 +30,10 @@
 		"alfy"
 	],
 	"dependencies": {
-		"alfy": "^0.9.1",
+		"alfy": "^1.1.0",
 		"form-data": "^3.0.0",
 		"fs-extra": "^9.0.0",
-		"got": "^11.1.4",
+		"got": "^12.5.3",
 		"jsonfile": "^6.0.1",
 		"request": "^2.88.0",
 		"request-promise": "^4.2.5",
@@ -43,10 +43,10 @@
 		"util": "^0.12.3"
 	},
 	"devDependencies": {
-		"ava": "^3.8.2",
+		"ava": "^5.2.0",
 		"esm": "^3.2.25",
 		"webpack": "^4.43.0",
-		"xo": "^0.30.0"
+		"xo": "^0.53.1"
 	},
 	"xo": {
 		"space": false,
